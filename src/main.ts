@@ -1,6 +1,9 @@
-import './assets/main.css'
+import './assets/styles/main.scss'
 
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
+import VueKonva from 'vue-konva';
 
-createApp(App).mount('#app')
+const app = createApp(App);
+app.use(VueKonva);
+app.mount('#app');
