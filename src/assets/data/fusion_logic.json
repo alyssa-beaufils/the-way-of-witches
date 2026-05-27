@@ -1,0 +1,122 @@
+[
+    {
+        "id": 0,
+        "name": "The Fool",
+        "action": {
+            "upright": "You leap blindly into the unknown and take a major risk",
+            "reversed": "You flee your responsibilities and act on reckless impulse"
+        },
+        "domain":{
+            "upright": "towards a completely new and unwritten chapter of your life.",
+            "reversed": "in the midst of total chaos and blatant instability."
+        }
+    },
+    {
+        "id": 1,
+        "name": "The Magician",
+        "action": {
+            "upright": "You initiate a fresh project and channel your raw talents",
+            "reversed": "You manipulate the situation or deceitfully waste your potential"
+        },
+        "domain":{
+            "upright": "to manifest promising new opportunities and tangible results.",
+            "reversed": "while feeding on illusions and deceptive promises."
+        }
+    },
+    {
+        "id": 2,
+        "name": "The High Priestess",
+        "action": {
+            "upright": "You move forward in silence while listening to your deep intuition",
+            "reversed": "You conceal heavy secrets or deliberately ignore the warning signs"
+        },
+        "domain":{
+            "upright": "within the mysteries and hidden truths of your subconscious mind.",
+            "reversed": "when facing toxic unspoken truths and a paralyzing passivity."
+        }
+    },
+    {
+        "id": 3,
+        "name": "The Empress",
+        "action": {
+            "upright": "You fully express your creativity and nurture new ideas",
+            "reversed": "You suffocated growth by overreacting or becoming too controlling"
+        },
+        "domain":{
+            "upright": "surrounded by abundance, beauty, and rapidly expanding projects.",
+            "reversed": "at the heart of a sterile mess and emotional dependency."
+        }
+    },
+    {
+        "id": 4,
+        "name": "The Emperor",
+        "action": {
+            "upright": "You assert your authority and firmly establish the rules",
+            "reversed": "You abuse your power and rule with an iron fist"
+        },
+        "domain":{
+            "upright": "to solidify your material foundations and long-term career.",
+            "reversed": "against extreme mental rigidity and a complete loss of control."
+        }
+    },
+    {
+        "id": 5,
+        "name": "The Hierophant",
+        "action": {
+            "upright": "You pass down knowledge and follow the path of wisdom",
+            "reversed": "You impose strict dogmas and rebel against established traditions"
+        },
+        "domain":{
+            "upright": "within official institutions or deeply rooted spiritual values.",
+            "reversed": "under the influence of poor advice or limiting belief systems."
+        }
+    },
+    {
+        "id": 6,
+        "name": "The Lovers",
+        "action": {
+            "upright": "You stand at a crossroads and make a choice alignment with your heart",
+            "reversed": "You suffer from deep misalignment and struggle to make a definitive choice"
+        },
+        "domain":{
+            "upright": "within your closest relationships, personal values, and emotional bonds.",
+            "reversed": "due to a severe inner conflict or a disharmonious partnership."
+        }
+    },
+    {
+        "id": 7,
+        "name": "The Chariot",
+        "action": {
+            "upright": "You harness your willpower and charge forward with fierce determination",
+            "reversed": "You lose your direction and find your momentum turning into aggression"
+        },
+        "domain":{
+            "upright": "toward swift success, overcoming obstacles, and achieving total victory.",
+            "reversed": "while crashing into roadblocks, lack of control, and wasted energy."
+        }
+    },
+    {
+        "id": 8,
+        "name": "The Strength",
+        "action": {
+            "upright": "You tap into quiet inner courage and calmly tame your wildest instincts",
+            "reversed": "You give in to raw, unchecked emotion or suffer from a lack of self-belief"
+        },
+        "domain":{
+            "upright": "to handle a challenging situation with grace, patience, and resilience.",
+            "reversed": "resulting in creative blocks, physical burnout, or explosive outbursts."
+        }
+    },
+    {
+        "id": 9,
+        "name": "The Hermit",
+        "action": {
+            "upright": "You withdraw from external noise and seek deeper internal clarity",
+            "reversed": "You isolate yourself completely and refuse to engage with reality"
+        },
+        "domain":{
+            "upright": "during a necessary period of self-reflection and spiritual soul-searching.",
+            "reversed": "trapped in lonely stagnation, paranoia, or stubborn narrow-mindedness."
+        }
+    }
+]

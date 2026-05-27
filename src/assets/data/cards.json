@@ -1,0 +1,11 @@
+{
+  "tarot": [
+        {
+            "name": "The Magician",
+            "image": "src/assets/cards/magician.svg",
+            "symbolism": "The Magician embodies the power of manifestation and transformation. He holds a staff pointing towards the sky, symbolizing the connection between the divine and the earthly. On his table are the four symbols of the tarot suits (wands, cups, swords, and pentacles), representing the elements and resources at his disposal. The Magician is a master of will and creativity.",
+            "up": "Manifestation, personal power, creativity, focus, inspired action, mastery of resources.",
+            "reverse": "Manipulation, deceit, lack of focus, unrealized potential, abuse of power, illusions."
+        }
+    ]  
+}
