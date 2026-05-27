@@ -1,11 +1,202 @@
-{
-  "tarot": [
-        {
-            "name": "The Magician",
-            "image": "src/assets/cards/magician.svg",
-            "symbolism": "The Magician embodies the power of manifestation and transformation. He holds a staff pointing towards the sky, symbolizing the connection between the divine and the earthly. On his table are the four symbols of the tarot suits (wands, cups, swords, and pentacles), representing the elements and resources at his disposal. The Magician is a master of will and creativity.",
-            "up": "Manifestation, personal power, creativity, focus, inspired action, mastery of resources.",
-            "reverse": "Manipulation, deceit, lack of focus, unrealized potential, abuse of power, illusions."
+[
+    {
+        "id": 0,
+        "name": "The Fool",
+        "upright": {
+            "keywords": ["new beginnings", "innocence", "spontaneity", "free spirit"],
+            "meaning": [
+                "A sense of freedom and excitement fills the Fool as he dives boldly into the unknown. He trusts in what he cannot yet see, and in the endless possibilities it holds. By daring to try new things, he moves closer to the dreams he has long hoped for.",
+                "He walks forward with curiosity and optimism, knowing that everything will unfold as it’s meant to.",
+                "Like the Fool, embrace the adventure and trust your instincts."
+            ]
+        },
+        "reversed":{
+            "keywords": ["recklessness", "foolishness", "naivety", "risk-taking"],
+            "meaning": [
+                "Reversed, the Fool may still long for freedom and new beginnings, but fear or recklessness clouds his path. He hesitates at the edge of the unknown, doubting his instincts and becoming overwhelmed by uncertainty.",
+                "He may rush forward carelessly without considering the consequences, mistaking impulsiveness for courage. The endless possibilities that once felt exciting can instead feel confusing or out of reach.",
+                "Pause and reflect. Trust yourself, but remain grounded as you step into what comes next."
+            ]
         }
-    ]  
-}
+    },
+    {
+        "id": 1,
+        "name": "The Magician",
+        "upright": {
+            "keywords": ["manifestation", "resourcefulness", "determination", "willpower"],
+            "meaning": [
+                "The Magician stands before endless possibilities, fully aware of the power he already holds within his hands. He is not waiting for the right moment, the right opportunity, or someone else’s permission.",
+                "Through focus, determination, and creativity, he transforms ideas into reality and gives shape to his ambitions. Nothing is out of reach when he fully trusts in his own abilities.",
+                "Like the Magician, recognize the strength you already possess and use it to build the reality you truly desire."
+            ]
+        },
+        "reversed":{
+            "keywords": ["trickery", "deception", "manipulation", "lack of skill"],
+            "meaning": [
+                "Reversed, the Magician may struggle to recognize the power that already exists within him. Doubt, fear, or a lack of direction clouds his confidence, leaving his potential unused or misdirected.",
+                "He may wait endlessly for the “right” moment, believing he lacks the skills, resources, or permission to begin, when in truth he already holds everything he needs.",
+                "Trust in yourself again, refocus your energy, and remember that your reality is still yours to shape."
+            ]
+        }
+    },
+    {
+        "id": 2,
+        "name": "The High Priestess",
+        "upright": {
+            "keywords": ["intuition", "subconscious", "secret knowledge", "inner wisdom"],
+            "meaning": [
+                "The High Priestess sits quietly between the known and the unknown, trusting the wisdom that lies deep within her. She understands that not everything needs to be revealed immediately, and that clarity often comes through patience, intuition, and reflection.",
+                "Rather than forcing answers, she listens carefully to her inner voice and allows herself to be guided by instinct.",
+                "The High Priestess reminds you to slow down, trust your intuition, and pay attention to your feelings."
+            ]
+        },
+        "reversed":{
+            "keywords": ["secrets", "hidden agendas", "repressed feelings", "lack of insight"],
+            "meaning": [
+                "Reversed, the High Priestess may feel disconnected from her intuition, struggling to hear the inner voice that once guided her so clearly. Doubt, confusion, or outside influences can cloud her judgment, causing her to ignore her true feelings in favor of what others expect or what seems easier to understand logically.",
+                "She may search desperately for answers outside herself, forgetting that the wisdom she seeks already exists within.",
+                "Quiet the noise around you, reconnect with yourself, and listen carefully to what your intuition has been trying to tell you all along."
+            ]
+        }
+    },
+    {
+        "id": 3,
+        "name": "The Empress",
+        "upright": {
+            "keywords": ["femininity", "fertility", "nurturing", "abundance"],
+            "meaning": [
+                "The Empress embodies warmth, creativity, and abundance, nurturing both herself and the world around her with care and compassion. She understands that growth takes time, patience, and love, and she allows herself to fully embrace the beauty of creation in all its forms.",
+                "Deeply connected to her emotions and senses, she finds strength in kindness, self-expression, and authenticity.",
+                "Care for yourself as gently as you care for others, and trust that what you nurture with love and intention will eventually flourish."
+            ]
+        },
+        "reversed":{
+            "keywords": ["excess", "overindulgence", "lack of control", "impracticality"],
+            "meaning": [
+                "Reversed, the Empress may feel disconnected from herself, struggling to offer the same care and compassion inward that she so easily gives to others. Creative energy can feel blocked, leaving her uninspired, exhausted, or unable to see the beauty in what she creates.",
+                "She may neglect her own needs while focusing too heavily on caring for everyone else, or seek comfort and validation in unhealthy ways.",
+                "Nurturing yourself is not selfish, it’s necessary. Reconnect with your emotions, allow yourself rest and kindness, and remember that growth cannot flourish when you are constantly pouring from an empty cup."
+            ]
+        }
+    },
+    {
+        "id": 4,
+        "name": "The Emperor",
+        "upright": {
+            "keywords": ["authority", "structure", "control", "power"],
+            "meaning": [
+                "The Emperor stands firm in his strength, creating stability and structure through discipline, wisdom, and determination. He understands that success is built on solid foundations, and that patience, responsibility, and self-control are necessary to turn ambitions into lasting achievements.",
+                "His strength is not just in leading, but in protecting what he builds and those he cares about, creating a space where growth can truly thrive.",
+                "Trust in your inner strength, set healthy boundaries, and build a foundation strong enough to support the future you wish to create."
+            ]
+        },
+        "reversed":{
+            "keywords": ["tyranny", "rigidity", "domination", "lack of discipline"],
+            "meaning": [
+                "Reversed, The Emperor may struggle to maintain balance between control and stability. The structure he tries to build can feel rigid or overwhelming, as discipline turns into pressure and responsibility becomes a burden rather than a strength.",
+                "Instead of offering protection, his need for control may create tension or instability, making it difficult for growth to happen naturally.",
+                "True strength does not come from forcing order, but from learning when to loosen control, adapt, and allow life to unfold with more flexibility."
+            ]
+        }
+    },
+    {
+        "id": 5,
+        "name": "The Hierophant",
+        "upright": {
+            "keywords": ["tradition", "spirituality", "conformity", "education"],
+            "meaning": [
+                "The Hierophant stands as a guide between tradition and understanding, offering wisdom passed down through experience, teachings, and shared belief. He encourages learning through structure, reflection, and connection to something greater than oneself.",
+                "Through guidance and tradition, he helps others find meaning, stability, and a sense of belonging within a larger system of knowledge.",
+                "Learn from trusted sources, honor what has been built before you, and find your place within the wisdom that surrounds you."
+            ]
+        },
+        "reversed":{
+            "keywords": ["rebellion", "nonconformity", "questioning authority", "lack of faith"],
+            "meaning": [
+                "Reversed, The Hierophant may represent a disconnection from traditional structures or a questioning of established beliefs. What once felt like guidance can start to feel limiting, rigid, or no longer aligned with personal truth.",
+                "There may be a desire to break away, explore independently, or challenge what has always been accepted as “the way things are.”",
+                "While tradition can offer guidance, your own understanding is just as valid. Discover what truly feels right for you."
+            ]
+        }
+    },
+    {
+        "id": 6,
+        "name": "The Lovers",
+        "upright": {
+            "keywords": ["love", "relationships", "choices", "values"],
+            "meaning": [
+                "The Lovers represent deep connection, trust, and the harmony that comes from being fully honest with yourself and others. Through love, vulnerability, and understanding, they create bonds built on mutual respect and emotional truth.",
+                "This card speaks not only of relationships, but also of the choices that shape your heart, your values, and the path you choose to follow.",
+                "Follow what truly resonates with your heart, nurture the connections that bring you peace and growth, and choose what feels genuinely aligned with who you are."
+            ]
+        },
+        "reversed":{
+            "keywords": ["imbalance", "disconnection", "disharmony", "misalignment"],
+            "meaning": [
+                "Reversed, The Lovers may represent imbalance, disconnection, or difficulty being honest with yourself and others. Relationships can become strained when communication, trust, or emotional truth is ignored, creating distance where harmony once existed.",
+                "This card may also point toward inner conflict, where your choices no longer align with your true feelings or values. Fear, doubt, or outside pressure can make it difficult to follow what genuinely resonates with your heart.",
+                "Reconnect with what truly matters to you, and choose the path that feels authentic rather than the one shaped by expectation or fear."
+            ]
+        }
+    },
+    {
+        "id": 7,
+        "name": "The Chariot",
+        "upright": {
+            "keywords": ["determination", "control", "willpower", "success"],
+            "meaning": [
+                "The Chariot moves forward with determination and confidence, driven by a strong sense of purpose and the will to overcome any obstacle in its path. Through focus, discipline, and perseverance, it maintains control even when faced with challenges or uncertainty.",
+                "Rather than allowing fear or doubt to take the lead, the Chariot trusts in its own strength and continues moving toward its goals with courage and direction.",
+                "Believe in yourself, stay focus on where you wish to go, and trust that your determination can carry you through whatever stands in your way."
+            ]
+        },
+        "reversed":{
+            "keywords": ["lack of control", "aggression", "directionless", "defeat"],
+            "meaning": [
+                "Reversed, The Chariot may represent a loss of direction, control, or confidence. Doubt, fear, or overwhelming emotions can make it difficult to stay focused, leaving you feeling stuck or pulled in too many directions at once.",
+                "It can also point to moving forward recklessly without clear purpose, allowing impulse to take control instead of determination.",
+                "Slow down, reconnect with your goals, and regain trust in your own ability to guide yourself forward."
+            ]
+        }
+    },
+    {
+        "id": 8,
+        "name": "The Strength",
+        "upright": {
+            "keywords": ["courage", "compassion", "inner strength", "resilience"],
+            "meaning": [
+                "Strength represents the power that comes from within and the ability to remain steady, resilient, and compassionate even when life becomes difficult. True strength is not about force or control, but about facing challenges with patience, courage, and trust in yourself.",
+                "Through self-belief and emotional balance, you are capable of overcoming obstacles without losing yourself in the process.",
+                "Trust in your inner strength, be patient with yourself, and know that you are capable of overcoming more than you realize."
+            ]
+        },
+        "reversed":{
+            "keywords": ["self-doubt", "emotional imbalance", "recklessness", "lack of self-belief"],
+            "meaning": [
+                "Reversed, Strength may represent self-doubt, emotional imbalance, or a struggle to trust in your own resilience. Challenges can begin to feel overwhelming, causing fear, frustration, or insecurity to take control instead of patience and self-belief.",
+                "You may be harder on yourself than necessary, forgetting how much strength already exists within you.",
+                "Be gentle with yourself, reconnect with your inner confidence, and remember that strength grows through perseverance, not perfection."
+            ]
+        }
+    },
+    {
+        "id": 9,
+        "name": "The Hermit",
+        "upright": {
+            "keywords": ["introspection", "soul-searching", "inner guidance", "solitude"],
+            "meaning": [
+                "The Hermit walks his path in quiet reflection, seeking wisdom and understanding through solitude and introspection. Rather than looking for answers in the outside world, he turns inward, trusting that clarity comes with patience, self-discovery, and time.",
+                "Through moments of stillness and reflection, he gains a deeper understanding of himself, his purpose, and the path ahead.",
+                "Trust the wisdom you uncover within, and allow yourself the space needed to grow, reflect, and find clarity."
+            ]
+        },
+        "reversed":{
+            "keywords": ["isolation", "disconnection", "overwhelm", "lack of direction"],
+            "meaning": [
+                "Reversed, The Hermit may represent isolation, disconnection, or becoming lost within your own thoughts. Time alone that was once healing and reflective can begin to feel lonely or overwhelming, making it difficult to find clarity or direction.",
+                "You may withdraw too deeply from others, avoiding guidance, connection, or the outside world out of fear, uncertainty, or emotional exhaustion.",
+                "Reconnect with the world around you, trust that clarity will come in time, and remember that you do not have to carry everything alone."
+            ]
+        }
+    }
+]
