@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'Erben Gothic';
+  font-family: 'ErbenGothic';
   src: url('../fonts/erben_gothic.woff2') format('woff2'),
        url('../fonts/erben_gothic.woff') format('woff');
   font-weight: normal;
@@ -14,7 +14,7 @@
   font-style: normal;
 }
 
-$font-primary: 'Erben Gothic', sans-serif;
+$font-primary: 'Erben Gothic', serif;
 $font-secondary: 'Sinistre', serif;
 
 $color-primary: #19001E;

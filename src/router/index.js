@@ -9,7 +9,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/sandbox',
+    path: '/Sandbox',
     name: 'sandbox',
     component: Sandbox
   }

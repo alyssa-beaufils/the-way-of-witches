@@ -1,4 +1,4 @@
-<script>
+<script setup>
 import Board from '../components/canvas/Board.vue'
 </script>
 
@@ -6,16 +6,18 @@ import Board from '../components/canvas/Board.vue'
   <header>
   </header>
 
-  <main>
+  <main class="sandbox-container">
     <Board />
   </main>
 </template>
 
-<style lang="scss">
-body {
-    background-image: url("assets/img/table.jpg");
+<style scoped lang="scss">
+.sandbox-container {
+    background-image: url("@/assets/img/table.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     overflow-y: hidden;
+    width: 100vw;
+    height: 100vh;
   }
 </style>
