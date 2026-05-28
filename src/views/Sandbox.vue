@@ -1,7 +1,14 @@
+<script>
+import Board from '../components/canvas/Board.vue'
+</script>
+
 <template>
-  <div id="app-container">
-    <router-view />
-  </div>
+  <header>
+  </header>
+
+  <main>
+    <Board />
+  </main>
 </template>
 
 <style lang="scss">
