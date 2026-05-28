@@ -42,8 +42,8 @@ watch(() => props.imageSrc, () => {
             x: props.x,
             y: props.y,
             draggable: true,
-            width: 150,
-            height: 250,
+            width: 110,
+            height: 180,
             id: `card-${props.id}`,
         }" 
     />

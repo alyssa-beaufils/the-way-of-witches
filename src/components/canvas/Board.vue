@@ -23,9 +23,13 @@ const StageConfig = ref({
                 :key="card.id"
                 :id="card.id"
                 :imageSrc="card.image"
-                :x="50 + (index * 180)" 
-                :y="100" 
+                :x="400 + (index % 5) * 150"
+                :y="280 + Math.floor(index / 5) * 220"
             />
         </v-layer>
     </v-stage>
 </template>
+
+<style scoped lang="scss">
+
+</style>

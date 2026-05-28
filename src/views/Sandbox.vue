@@ -17,6 +17,7 @@ import Board from '../components/canvas/Board.vue'
     background-size: cover;
     background-repeat: no-repeat;
     overflow-y: hidden;
+    overflow-x: hidden;
     width: 100vw;
     height: 100vh;
   }

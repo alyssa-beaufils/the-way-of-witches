@@ -22,7 +22,7 @@ onMounted(() => {
         :config="{
             image: CharacterImg,
             x: 695,
-            y: 120,
+            y: 90,
             width: 120,
             height: 165
         }"
