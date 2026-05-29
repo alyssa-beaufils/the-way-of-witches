@@ -22,11 +22,10 @@ onMounted(() => {
         :config="{
             image: CharacterImg,
             x: 695,
-            y: 90,
+            y: 140,
             width: 120,
             height: 165
         }"
         @click="emit('character-interaction')"
     />
 </template>
-
