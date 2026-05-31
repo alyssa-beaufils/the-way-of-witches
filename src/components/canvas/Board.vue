@@ -7,6 +7,16 @@ import CardModal from './CardModal.vue'
 
 const tarotCards = tarotData
 
+const selectedCard = ref(null)
+
+const openModal = (cardData) => {
+    selectedCard.value = cardData
+}
+
+const closeModal = () => {
+    selectedCard.value = null
+}
+
 const total_width = 1536
 const total_height = 864
 
@@ -57,9 +67,15 @@ onUnmounted(() => {
                 :imageSrc="card.image"
                 :x="400 + (index % 5) * 150"
                 :y="320 + Math.floor(index / 5) * 220"
+                @select-card="openModal(card)"
             />
         </v-layer>
     </v-stage>
+    <CardModal
+        v-if="selectedCard"
+        :card="selectedCard"
+        @close="closeModal"
+    />
 </template>
 
 <style scoped lang="scss">

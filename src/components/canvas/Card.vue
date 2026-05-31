@@ -69,5 +69,7 @@ watch(() => props.imageSrc, () => { LoadImg() })
             id: `card-${props.id}`,
         }" 
         @dragend="onDragEnd"
+        @click="$emit('select-card')"
+        @tap="$emit('select-card')"
     />
 </template>
