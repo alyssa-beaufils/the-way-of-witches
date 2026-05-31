@@ -1,109 +1,256 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import Character from './Character.vue'
-import Card from './Card.vue'
-import tarotData from '@/assets/data/cards.json'
-import CardModal from './CardModal.vue'
-import FusionModal from './FusionModal.vue'
-import FusionData from '@/assets/data/fusion_logic.json'
+    import { ref, onMounted, onUnmounted } from 'vue'
+    import Character from './Character.vue'
+    import Card from './Card.vue'
+    import tarotData from '@/assets/data/cards.json'
+    import CardModal from './CardModal.vue'
+    import FusionModal from './FusionModal.vue'
+    import FusionData from '@/assets/data/fusion_logic.json'
+    import ExerciceData from '@/assets/data/exercice.json'
+    import ExerciceMode from './ExerciceMode.vue'
 
-const tarotCards = tarotData
-const fusionLogic = FusionData
-const selectedCard = ref(null)
-const selectedFusion = ref(null)
+    const tarotCards = tarotData
+    const listExercices = ExerciceData
 
-const openModal = (cardData) => {
-    selectedCard.value = cardData
-}
+    const fusionCard = new Map(FusionData.map(c => [c.id, c]))
+    const tarotCard = new Map(tarotData.map(c => [c.id, c]))
 
-const closeModal = () => {
-    selectedCard.value = null
-}
+    const selectedCard = ref(null)
+    const selectedFusion = ref(null)
+    const selectedExercice = ref(null)
 
-const handleFusion = ({ activeId, targetId }) => {
+    const currentMode = ref('sandbox')
+    const isDialogueOpen = ref(false)
 
-    const visualCardA = tarotCards.find(c => c.id === activeId)
-    const visualCardB = tarotCards.find(c => c.id === targetId)
-
-    const fusionCardA = fusionLogic.find(c => c.id === activeId)
-    const fusionCardB = fusionLogic.find(c => c.id === targetId)
-
-    if (visualCardA && visualCardB && fusionCardA && fusionCardB) {
-        selectedFusion.value = {
-            cardA: { ...visualCardA, ...fusionCardA },
-            cardB: { ...visualCardB, ...fusionCardB }
+    const handleCharacterClick = () => {
+        if (currentMode.value === 'sandbox') {
+            isDialogueOpen.value = true
         }
     }
-}
 
-const total_width = 1536
-const total_height = 864
+    const startExercice = () => {
+        isDialogueOpen.value = false
 
-const StageConfig = ref({
-    width: window.innerWidth,
-    height: window.innerHeight,
-    scaleX: 1,
-    scaleY: 1,
-    x: 0,
-    y: 0
-});
+        if (Array.isArray(listExercices) && listExercices.length > 0) {
+            const randomIndex = Math.floor(Math.random() * listExercices.length)
+            selectedExercice.value = listExercices[randomIndex]
+        } else {
+            selectedExercice.value = listExercices
+        }
+        
+        currentMode.value = 'exercice'
 
-const fitStageToWindow = () => {
-    const width = window.innerWidth
-    const height = window.innerHeight
-    const scale = Math.max(width / total_width, height / total_height)
+        fitStageToWindow() 
+    }
 
-    StageConfig.value.width = width
-    StageConfig.value.height = height
-    StageConfig.value.scaleX = scale
-    StageConfig.value.scaleY = scale
+    const openModal = (cardData) => { selectedCard.value = cardData }
+    const closeModal = () => { selectedCard.value = null }
 
-    StageConfig.value.x = (width - total_width * scale) / 2
-    StageConfig.value.y = (height - total_height * scale) / 2
-}
+    const handleFusion = ({ activeId, targetId }) => {
+        const visualCardA = tarotCard.get(activeId)
+        const visualCardB = tarotCard.get(targetId)
+        const fusionCardA = fusionCard.get(activeId)
+        const fusionCardB = fusionCard.get(targetId)
 
-onMounted(() => {
-    window.addEventListener('resize', fitStageToWindow)
-    fitStageToWindow()
-})
+        if (visualCardA && visualCardB && fusionCardA && fusionCardB) {
+            selectedFusion.value = {
+                cardA: { ...visualCardA, ...fusionCardA },
+                cardB: { ...visualCardB, ...fusionCardB }
+            }
+        }
+    }
 
-onUnmounted(() => {
-    window.removeEventListener('resize', fitStageToWindow)
-})
+    const total_width = 1536
+    const total_height = 864
 
+    const StageConfig = ref({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        scaleX: 1,
+        scaleY: 1,
+        x: 0,
+        y: 0
+    })
+
+    const fitStageToWindow = () => {
+        const width = window.innerWidth
+        const height = window.innerHeight
+        const scale = Math.max(width / total_width, height / total_height)
+
+        StageConfig.value = {
+            width,
+            height,
+            scaleX: scale,
+            scaleY: scale,
+            x: (width - total_width * scale) / 2,
+            y: (height - total_height * scale) / 2
+        }
+    }
+
+    const handleResize = () => {
+        fitStageToWindow()
+    }
+
+    onMounted(() => {
+        window.addEventListener('resize', handleResize)
+        fitStageToWindow()
+    })
+
+    onUnmounted(() => {
+        window.removeEventListener('resize', handleResize)
+    })
 </script>
 
 <template>
-    <v-stage :config="StageConfig">
-        <v-layer>
-            <Character />
-        </v-layer>
-        <v-layer>
-            <Card 
-                v-for="(card, index) in tarotCards" 
-                :key="card.id"
-                :id="card.id"
-                :imageSrc="card.image"
-                :x="400 + (index % 5) * 150"
-                :y="320 + Math.floor(index / 5) * 220"
-                @select-card="openModal(card)"
-                @fuse-card="handleFusion"
-            />
-        </v-layer>
-    </v-stage>
-    <CardModal
-        v-if="selectedCard"
-        :card="selectedCard"
-        @close="closeModal"
-    />
+    <div class="board-wrapper">
+        <div v-if="currentMode === 'sandbox'" class="sandbox-layout">
+            <v-stage :config="StageConfig">
+                <v-layer>
+                    <Character @character-interaction="handleCharacterClick" />
+                </v-layer>
+                <v-layer>
+                    <Card 
+                        v-for="(card, index) in tarotCards" 
+                        :key="card.id"
+                        :id="card.id"
+                        :imageSrc="card.image"
+                        :x="400 + (index % 5) * 150"
+                        :y="320 + Math.floor(index / 5) * 220"
+                        @select-card="openModal(card)"
+                        @fuse-card="handleFusion"
+                    />
+                </v-layer>
+            </v-stage>
 
-    <FusionModal 
-        v-if="selectedFusion" 
-        :combo="selectedFusion" 
-        @close="selectedFusion = null" 
-    />
+            <div v-if="isDialogueOpen" class="dialogue-overlay">
+                <div class="dialogue-container">
+                    <div class="dialogue-bubble">
+                        <p class="dialogue-text">I see that you're <span class="highlight">thirsty for knowledge</span>. Good. Would you like to quench your thirst?</p>
+                    </div>
+                    <div class="dialogue-buttons">
+                        <button class="btn-dialogue cancel" @click="isDialogueOpen = false">Not right now...</button>
+                        <button class="btn-dialogue confirm" @click="startExercice">Start the exercise</button>
+                    </div>
+                </div>
+            </div>
+
+            <CardModal v-if="selectedCard"
+            :card="selectedCard"
+            @close="closeModal"
+            />
+            <FusionModal v-if="selectedFusion"
+            :combo="selectedFusion"
+            @close="selectedFusion = null"
+            />
+        </div>
+
+        <div v-else-if="currentMode === 'exercice'" class="exercice-layout">
+            <ExerciceMode 
+                :tarotCards="tarotCards" 
+                :StageConfig="StageConfig" 
+                :exercice="selectedExercice" 
+                @quit-exercice="currentMode = 'sandbox'" 
+            />
+        </div>
+    </div>
 </template>
 
 <style scoped lang="scss">
+    @import '../../assets/styles/variables.scss';
 
+    .board-wrapper {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .sandbox-layout, .exercice-layout {
+        width: 100%;
+        height: 100%;
+    }
+
+    .dialogue-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        z-index: 1500;
+    }
+
+    .dialogue-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        margin-left: 180px;
+        padding: 0;
+    }
+
+    .dialogue-bubble {
+        background-image: url('@/assets/img/bg-dialogue.svg'); 
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        width: 600px;
+        height: 70px;
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .dialogue-text {
+        font-family: $font-secondary;
+        font-size: 16px;
+        color: $color-primary;
+        text-align: left;
+        margin: 0;
+        
+        .highlight {
+            color: $color-secondary;
+        }
+    }
+
+    .dialogue-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        margin-top: 5px;
+        width: 100%;
+    }
+
+    .btn-dialogue {
+        font-family: $font-secondary;
+        font-size: 16px;
+        padding: 10px 20px; 
+        background-image: url('@/assets/img/bg-btn.svg');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 162px;
+        margin: 0;
+        transition: transform 0.2s ease;
+
+        &:hover { 
+            transform: scale(1.05);
+        }
+        
+        &.cancel {
+            color: $color-primary;
+        }
+
+        &.confirm {
+            color: $color-secondary;
+        }
+    }
 </style>

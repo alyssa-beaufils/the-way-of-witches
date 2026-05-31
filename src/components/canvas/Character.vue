@@ -1,19 +1,19 @@
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import MentorPath from '@/assets/characters/mentor.png'
+<script setup>
+    import { ref, onMounted } from 'vue'
+    import MentorPath from '@/assets/characters/mentor.png'
 
-const emit = defineEmits(['character-interaction']);
-const CharacterImg = ref<HTMLImageElement | null>(null);
+    const emit = defineEmits(['character-interaction']);
+    const CharacterImg = ref(null);
 
-onMounted(() => {
-    const img = new window.Image();
-    img.src = MentorPath;
+    onMounted(() => {
+        const img = new window.Image();
+        img.src = MentorPath;
 
-    img.onload = () => {
-        CharacterImg.value = img
-    }   
-}
-);
+        img.onload = () => {
+            CharacterImg.value = img
+        }   
+    }
+    );
 </script>
 
 <template>
@@ -27,5 +27,7 @@ onMounted(() => {
             height: 165
         }"
         @click="emit('character-interaction')"
+        @mouseenter="$event.target.getStage().container().style.cursor = 'pointer'"
+        @mouseleave="$event.target.getStage().container().style.cursor = 'default'"
     />
 </template>

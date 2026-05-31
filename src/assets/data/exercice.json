@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "targetCardId": 0,
+        "correctCardId": 1,
+        "correctOrientation": "upright",
+        "question": "When <span class='highlight'>paired with which card</span> does <span class='highlight'>The Fool</span> mean that it is time to take a blind risk, because you have the raw talents and the ability to channel them to achieve a desired outcome?"
+    },
+    {
+        "id": 2,
+        "targetCardId": 1,
+        "correctCardId": 7,
+        "correctOrientation": "upright",
+        "question": "When <span class='highlight'>paired with which card</span> will <span class='highlight'>The Magician</span> successfully initiate a fresh project and charge forward toward swift victory and overcoming all obstacles?"
+    },
+    {
+        "id": 3,
+        "targetCardId": 2,
+        "correctCardId": 6,
+        "correctOrientation": "upright",
+        "question": "When <span class='highlight'>paired with which card</span> does <span class='highlight'>The High Priestess</span> warn you that listening to your deep intuition will lead you to a severe crossroads regarding a choice close to your heart?"
+    },
+    {
+        "id": 4,
+        "targetCardId": 3,
+        "correctCardId": 8,
+        "correctOrientation": "upright",
+        "question": "When <span class='highlight'>paired with which card</span> must <span class='highlight'>The Empress</span> nurture her new ideas with quiet inner courage and resilience to handle a challenging situation with grace?"
+    },
+    {
+        "id": 5,
+        "targetCardId": 4,
+        "correctCardId": 0,
+        "correctOrientation": "reversed",
+        "question": "When <span class='highlight'>paired with which card</span> does <span class='highlight'>The Emperor</span> completely lose his grip on authority, causing his established rules to crash straight into total chaos and blatant instability?"
+    },
+    {
+        "id": 6,
+        "targetCardId": 7,
+        "correctCardId": 9,
+        "correctOrientation": "reversed",
+        "question": "When <span class='highlight'>paired with which card</span> does <span class='highlight'>The Chariot</span> find its fierce momentum completely broken, forcing you to lose direction and trap your willpower in lonely stagnation and paranoia?"
+    },
+    {
+        "id": 7,
+        "targetCardId": 6,
+        "correctCardId": 5,
+        "correctOrientation": "reversed",
+        "question": "When <span class='highlight'>paired with which card</span> will making a choice in alignment with your heart put <span class='highlight'>The Lovers</span> under the dangerous influence of poor advice or a limiting belief system?"
+    }
+]
