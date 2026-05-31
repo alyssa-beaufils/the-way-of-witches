@@ -4,10 +4,13 @@ import Character from './Character.vue'
 import Card from './Card.vue'
 import tarotData from '@/assets/data/cards.json'
 import CardModal from './CardModal.vue'
+import FusionModal from './FusionModal.vue'
+import FusionData from '@/assets/data/fusion_logic.json'
 
 const tarotCards = tarotData
-
+const fusionLogic = FusionData
 const selectedCard = ref(null)
+const selectedFusion = ref(null)
 
 const openModal = (cardData) => {
     selectedCard.value = cardData
@@ -15,6 +18,22 @@ const openModal = (cardData) => {
 
 const closeModal = () => {
     selectedCard.value = null
+}
+
+const handleFusion = ({ activeId, targetId }) => {
+
+    const visualCardA = tarotCards.find(c => c.id === activeId)
+    const visualCardB = tarotCards.find(c => c.id === targetId)
+
+    const fusionCardA = fusionLogic.find(c => c.id === activeId)
+    const fusionCardB = fusionLogic.find(c => c.id === targetId)
+
+    if (visualCardA && visualCardB && fusionCardA && fusionCardB) {
+        selectedFusion.value = {
+            cardA: { ...visualCardA, ...fusionCardA },
+            cardB: { ...visualCardB, ...fusionCardB }
+        }
+    }
 }
 
 const total_width = 1536
@@ -68,6 +87,7 @@ onUnmounted(() => {
                 :x="400 + (index % 5) * 150"
                 :y="320 + Math.floor(index / 5) * 220"
                 @select-card="openModal(card)"
+                @fuse-card="handleFusion"
             />
         </v-layer>
     </v-stage>
@@ -75,6 +95,12 @@ onUnmounted(() => {
         v-if="selectedCard"
         :card="selectedCard"
         @close="closeModal"
+    />
+
+    <FusionModal 
+        v-if="selectedFusion" 
+        :combo="selectedFusion" 
+        @close="selectedFusion = null" 
     />
 </template>
 

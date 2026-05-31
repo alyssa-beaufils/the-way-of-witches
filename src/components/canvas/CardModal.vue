@@ -117,11 +117,11 @@ const toggleMeaning = () => {
     width: 300px;
     height: auto;
     margin-top: 45px;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .card-img.isFlipped{
-    transform: rotateX(180deg);
+    transform: rotate(-180deg);
 }
 
 .click-instruction{
