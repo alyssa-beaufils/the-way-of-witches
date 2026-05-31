@@ -39,21 +39,30 @@
         }
     }
 
-    const handleCardClick = () => {
+    const handleCardClick = (e) => {
+        if (e && e.target && typeof e.target.isDragging === 'function' && e.target.isDragging()) return
+
         if (props.allowFlipOnClick) {
             isReversed.value = !isReversed.value
             
             const node = konvaImageRef.value.getNode()
+            const targetRotation = isReversed.value ? 180 : 0
 
-            node.offsetX(60)
-            node.offsetY(100)
-            node.rotation(isReversed.value ? 180 : 0)
+            const flipTween = new window.Konva.Tween({
+                node: node,
+                duration: 0.40,
+                rotation: targetRotation,
+                easing: window.Konva.Easings.BackEaseOut,
 
-            node.position({ x: props.x + 60, y: props.y + 100 })
+                onFinish: () => {
+                    flipTween.destroy()
+                }
+            })
             
-            node.getLayer().batchDraw()
+            flipTween.play()
+
         } else {
-            emit('select-card')
+            emit('select-card', props.id)
         }
     }
 

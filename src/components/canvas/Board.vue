@@ -21,10 +21,15 @@
 
     const currentMode = ref('sandbox')
     const isDialogueOpen = ref(false)
+    const mentorComponentRef = ref(null)
 
     const handleCharacterClick = () => {
         if (currentMode.value === 'sandbox') {
             isDialogueOpen.value = true
+            
+            if (mentorComponentRef.value) {
+                mentorComponentRef.value.jump()
+            }
         }
     }
 
@@ -106,7 +111,10 @@
         <div v-if="currentMode === 'sandbox'" class="sandbox-layout">
             <v-stage :config="StageConfig">
                 <v-layer>
-                    <Character @character-interaction="handleCharacterClick" />
+                    <Character
+                    @character-interaction="handleCharacterClick"
+                    ref="mentorComponentRef"
+                    />
                 </v-layer>
                 <v-layer>
                     <Card 

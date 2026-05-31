@@ -1,30 +1,30 @@
 <script setup>
-import { ref, computed } from 'vue';
+    import { ref, computed } from 'vue';
 
-const props = defineProps({
-    combo: {
-        type: Object,
-        required: true
-    }
-});
+    const props = defineProps({
+        combo: {
+            type: Object,
+            required: true
+        }
+    });
 
-defineEmits(['close']);
+    defineEmits(['close']);
 
-const isCardAReversed = ref(false);
-const isCardBReversed = ref(false);
+    const isCardAReversed = ref(false);
+    const isCardBReversed = ref(false);
 
-const toggleCardA = () => { isCardAReversed.value = !isCardAReversed.value; };
-const toggleCardB = () => { isCardBReversed.value = !isCardBReversed.value; };
+    const toggleCardA = () => { isCardAReversed.value = !isCardAReversed.value; };
+    const toggleCardB = () => { isCardBReversed.value = !isCardBReversed.value; };
 
-const currentActionText = computed(() => {
-    const direction = isCardAReversed.value ? 'reversed' : 'upright';
-    return props.combo.cardA.action[direction];
-});
+    const currentActionText = computed(() => {
+        const direction = isCardAReversed.value ? 'reversed' : 'upright';
+        return props.combo.cardA.action[direction];
+    });
 
-const currentDomainText = computed(() => {
-    const direction = isCardBReversed.value ? 'reversed' : 'upright';
-    return props.combo.cardB.domain[direction];
-});
+    const currentDomainText = computed(() => {
+        const direction = isCardBReversed.value ? 'reversed' : 'upright';
+        return props.combo.cardB.domain[direction];
+    });
 </script>
 
 <template>
@@ -75,129 +75,129 @@ const currentDomainText = computed(() => {
 </template>
 
 <style scoped lang="scss">
-@import '../../assets/styles/variables.scss';
+    @import '../../assets/styles/variables.scss';
 
-.modal-overlay {
-    position: fixed;
-    top: 0; left:
-    0; width: 100vw;
-    height: 100vh;
-    background-color: rgba(24, 0, 24, 0.773);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal-container {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    justify-content:center;
-    width: 95%;
-    max-width: 1200px;
-}
-
-.modal-content {
-    background-image: url('@/assets/img/parchment.svg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    width: 800px;
-    height: 500px;
-    padding: 130px 75px 55px 130px;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    position: relative;
-}
-
-.btn-close-modal {
-    position: absolute;
-    top: 80px;
-    right: 48px;
-    background: none;
-    border: none;
-    font-size: 32px;
-    color: $color-secondary;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    
-    &:hover {
-        transform: scale(1.2);
+    .modal-overlay {
+        position: fixed;
+        top: 0; left:
+        0; width: 100vw;
+        height: 100vh;
+        background-color: rgba(24, 0, 24, 0.773);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
     }
-}
 
-.cards-display-zone {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 10;
-    margin-right: -90px;
-}
+    .modal-container {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        justify-content:center;
+        width: 95%;
+        max-width: 1200px;
+    }
 
-.cards-duo-layout {
-    display: flex;
-    gap: 20px;
-}
+    .modal-content {
+        background-image: url('@/assets/img/parchment.svg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        width: 800px;
+        height: 500px;
+        padding: 130px 75px 55px 130px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        position: relative;
+    }
 
-.card-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-}
+    .btn-close-modal {
+        position: absolute;
+        top: 80px;
+        right: 48px;
+        background: none;
+        border: none;
+        font-size: 32px;
+        color: $color-secondary;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
 
-.card-img {
-    width: 250px;
-    height: auto;
-    margin-top: 45px;
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    will-change: transform;
-}
+    .cards-display-zone {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 10;
+        margin-right: -90px;
+    }
 
-.card-img.isFlipped {
-    transform: rotate(180deg);
-}
+    .cards-duo-layout {
+        display: flex;
+        gap: 20px;
+    }
 
-.instruction {
-    font-family: $font-secondary;
-    font-size: 14px;
-    color: white;
-}
+    .card-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+    }
 
-.click-instruction {
-    font-family: $font-secondary;
-    font-size: 14px;
-    color: white;
-}
+    .card-img {
+        width: 250px;
+        height: auto;
+        margin-top: 45px;
+        transition: transform 0.4s cubic-bezier(0.40, 1.40, 0.80, 1);
+        will-change: transform;
+    }
 
-.card-title {
-    font-family: $font-primary;
-    font-size: 36px;
-    font-weight: normal;
-    color: $color-secondary;
-    margin: 0 0 32px 0;
-    text-align: left;
-}
+    .card-img.isFlipped {
+        transform: rotate(180deg);
+    }
 
-.text-zone {
-    display: flex;
-    overflow: hidden;
-    flex-direction: column;
-    gap: 24px;
-    padding-right: 20px;
-}
+    .instruction {
+        font-family: $font-secondary;
+        font-size: 14px;
+        color: white;
+    }
 
-.card-meaning {
-    font-family: $font-secondary;
-    font-size: 18px;
-    color: $color-primary;
-    line-height: 1.5;
-    margin: 0;
-    padding: 0;
-    text-align: left;
-}
+    .click-instruction {
+        font-family: $font-secondary;
+        font-size: 14px;
+        color: white;
+    }
+
+    .card-title {
+        font-family: $font-primary;
+        font-size: 36px;
+        font-weight: normal;
+        color: $color-secondary;
+        margin: 0 0 32px 0;
+        text-align: left;
+    }
+
+    .text-zone {
+        display: flex;
+        overflow: hidden;
+        flex-direction: column;
+        gap: 24px;
+        padding-right: 20px;
+    }
+
+    .card-meaning {
+        font-family: $font-secondary;
+        font-size: 18px;
+        color: $color-primary;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+    }
 
 </style>

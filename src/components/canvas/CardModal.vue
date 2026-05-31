@@ -1,20 +1,20 @@
 <script setup>
-import { ref } from 'vue';
+    import { ref } from 'vue';
 
-defineProps({
-    card: {
-        type: Object,
-        required: true
-    }
-});
+    defineProps({
+        card: {
+            type: Object,
+            required: true
+        }
+    });
 
-defineEmits(['close']);
+    defineEmits(['close']);
 
-const isReversed = ref(false);
+    const isReversed = ref(false);
 
-const toggleMeaning = () => {
-    isReversed.value = !isReversed.value;
-};
+    const toggleMeaning = () => {
+        isReversed.value = !isReversed.value;
+    };
 
 </script>
 
@@ -49,110 +49,110 @@ const toggleMeaning = () => {
 </template>
 
 <style scoped lang="scss">
-@import '../../assets/styles/variables.scss';
+    @import '../../assets/styles/variables.scss';
 
-.modal-overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(24, 0, 24, 0.773);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal-container{
-    display: flex;
-    align-items: center;
-    gap: 0;
-    justify-content: center;
-    width: 95%;
-    max-width: 1200px;
-}
-
-.modal-content{
-    background-image: url('@/assets/img/parchment.svg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    width: 925px;
-    height: 500px;
-    padding: 45px 75px 55px 130px;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    position: relative;
-}
-
-.btn-close-modal{
-    position: absolute;
-    top: 48px;
-    right: 48px;
-    background: none;
-    border: none;
-    font-size: 32px;
-    color: $color-secondary;
-    cursor: pointer;
-    transition: all 0.3s;
-
-    &:hover{
-        transform: scale(1.2);
+    .modal-overlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(24, 0, 24, 0.773);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
     }
-}
 
-.card-display-zone{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
+    .modal-container{
+        display: flex;
+        align-items: center;
+        gap: 0;
+        justify-content: center;
+        width: 95%;
+        max-width: 1200px;
+    }
 
-    position: relative;
-    z-index: 10;
-    margin-right: -90px;
-}
+    .modal-content{
+        background-image: url('@/assets/img/parchment.svg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        width: 925px;
+        height: 500px;
+        padding: 45px 75px 55px 130px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        position: relative;
+    }
 
-.card-img{
-    width: 300px;
-    height: auto;
-    margin-top: 45px;
-    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-}
+    .btn-close-modal{
+        position: absolute;
+        top: 48px;
+        right: 48px;
+        background: none;
+        border: none;
+        font-size: 32px;
+        color: $color-secondary;
+        cursor: pointer;
+        transition: all 0.3s;
 
-.card-img.isFlipped{
-    transform: rotate(-180deg);
-}
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
 
-.click-instruction{
-    font-family: $font-secondary;
-    font-size: 14px;
-    color: white;
-}
+    .card-display-zone{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
 
-.card-title{
-    font-family: $font-primary;
-    font-size: 36px;
-    font-weight: normal;
-    color: $color-secondary;
-    margin-bottom: 32px;
-}
+        position: relative;
+        z-index: 10;
+        margin-right: -90px;
+    }
 
-.text-zone{
-    display: flex;
-    overflow: hidden;
-    flex-direction: column;
-    gap: 24px;
-    padding-right: 20px;
-}
+    .card-img{
+        width: 300px;
+        height: auto;
+        margin-top: 45px;
+        transition: transform 0.4s cubic-bezier(0.40, 1.40, 0.80, 1);
+    }
 
-.card-meaning{
-    font-family: $font-secondary;
-    font-size: 18px;
-    color: $color-primary;
-    line-height: 1.5;
-    margin: 0;
-    padding: 0;
-    text-align: left;
-}
+    .card-img.isFlipped{
+        transform: rotate(-180deg);
+    }
+
+    .click-instruction{
+        font-family: $font-secondary;
+        font-size: 14px;
+        color: white;
+    }
+
+    .card-title{
+        font-family: $font-primary;
+        font-size: 36px;
+        font-weight: normal;
+        color: $color-secondary;
+        margin-bottom: 32px;
+    }
+
+    .text-zone{
+        display: flex;
+        overflow: hidden;
+        flex-direction: column;
+        gap: 24px;
+        padding-right: 20px;
+    }
+
+    .card-meaning{
+        font-family: $font-secondary;
+        font-size: 18px;
+        color: $color-primary;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        text-align: left;
+    }
 </style>
