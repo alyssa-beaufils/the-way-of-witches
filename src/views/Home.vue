@@ -202,6 +202,7 @@
   .bottom-left {
     bottom: 48px;
     left: 48px;
+    transform: scaleY(-1);
   }
 
   .bottom-right {
