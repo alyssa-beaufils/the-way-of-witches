@@ -2,7 +2,7 @@
     {
         "id": 0,
         "name": "The Fool",
-        "image": "cards/fool.svg",
+        "image": "./cards/fool.svg",
         "upright": {
             "keywords": ["new beginnings", "innocence", "spontaneity", "free spirit"],
             "meaning": [
@@ -23,7 +23,7 @@
     {
         "id": 1,
         "name": "The Magician",
-        "image": "cards/magician.svg",
+        "image": "./cards/magician.svg",
         "upright": {
             "keywords": ["manifestation", "resourcefulness", "determination", "willpower"],
             "meaning": [
@@ -44,7 +44,7 @@
     {
         "id": 2,
         "name": "The High Priestess",
-        "image": "cards/high-priestess.svg",
+        "image": "./cards/high-priestess.svg",
         "upright": {
             "keywords": ["intuition", "subconscious", "secret knowledge", "inner wisdom"],
             "meaning": [
@@ -65,7 +65,7 @@
     {
         "id": 3,
         "name": "The Empress",
-        "image": "cards/empress.svg",
+        "image": "./cards/empress.svg",
         "upright": {
             "keywords": ["femininity", "fertility", "nurturing", "abundance"],
             "meaning": [
@@ -86,7 +86,7 @@
     {
         "id": 4,
         "name": "The Emperor",
-        "image": "cards/emperor.svg",
+        "image": "./cards/emperor.svg",
         "upright": {
             "keywords": ["authority", "structure", "control", "power"],
             "meaning": [
@@ -107,7 +107,7 @@
     {
         "id": 5,
         "name": "The Hierophant",
-        "image": "cards/hierophant.svg",
+        "image": "./cards/hierophant.svg",
         "upright": {
             "keywords": ["tradition", "spirituality", "conformity", "education"],
             "meaning": [
@@ -128,7 +128,7 @@
     {
         "id": 6,
         "name": "The Lovers",
-        "image": "cards/lovers.svg",
+        "image": "./cards/lovers.svg",
         "upright": {
             "keywords": ["love", "relationships", "choices", "values"],
             "meaning": [
@@ -149,7 +149,7 @@
     {
         "id": 7,
         "name": "The Chariot",
-        "image": "cards/chariot.svg",
+        "image": "./cards/chariot.svg",
         "upright": {
             "keywords": ["determination", "control", "willpower", "success"],
             "meaning": [
@@ -170,7 +170,7 @@
     {
         "id": 8,
         "name": "The Strength",
-        "image": "cards/strength.svg",
+        "image": "./cards/strength.svg",
         "upright": {
             "keywords": ["courage", "compassion", "inner strength", "resilience"],
             "meaning": [
@@ -191,7 +191,7 @@
     {
         "id": 9,
         "name": "The Hermit",
-        "image": "cards/hermit.svg",
+        "image": "./cards/hermit.svg",
         "upright": {
             "keywords": ["introspection", "soul-searching", "inner guidance", "solitude"],
             "meaning": [
