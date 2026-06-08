@@ -8,12 +8,11 @@
         exercice: { type: Object, required: true }
     })
 
-    const emit = defineEmits(['quit-exercice'])
-
-    let quitTimer = null
+    const emit = defineEmits(['quit-exercice', 'next-exercice'])
 
     const feedbackMessage = ref('')
     const isSuccess = ref(false)
+    const showSuccessModal = ref(false)
     const targetCardImgObj = ref(null)
 
     const targetCard = computed(() => {
@@ -30,6 +29,12 @@
         }
     }, { immediate: true })
 
+    watch(() => props.exercice, () => {
+    showSuccessModal.value = false
+    feedbackMessage.value = ''
+    isSuccess.value = false
+})
+
     const handleCardDrop = ({ activeId, targetId, orientation }) => {
         if (targetId && targetId.toString() === '999') {
             if (
@@ -38,12 +43,8 @@
             ) {
                 isSuccess.value = true
                 feedbackMessage.value = "Perfect! You surely know your tarot!"
-
-                if (quitTimer) clearTimeout(quitTimer)
-
-                quitTimer = setTimeout(() => { 
-                    emit('quit-exercice') 
-                }, 2500)
+                
+                showSuccessModal.value = true
 
             } else if (activeId === props.exercice.correctCardId) {
                 isSuccess.value = false
@@ -54,10 +55,6 @@
             }
         }
     }
-
-    onUnmounted(() => {
-        if (quitTimer) clearTimeout(quitTimer)
-    })
 </script>
 
 <template>
@@ -68,9 +65,20 @@
             </div>
         </div>
 
-        <p v-if="feedbackMessage" class="feedback-text" :class="{ 'success': isSuccess }">
-            {{ feedbackMessage }}
-        </p>
+        <p v-if="feedbackMessage && !showSuccessModal" class="feedback-text" :class="{ 'success': isSuccess }">{{ feedbackMessage }}</p>
+
+        <div v-if="showSuccessModal" class="success-overlay">
+            <div class="success-container">
+                <div class="success-bubble">
+                    <h3>You little witch!</h3>
+                    <p>You found the exact card and its correct orientation. Your intuition serves you well! Care for another go?</p>
+                </div>
+                <div class="success-buttons">
+                    <button class="btn-success secondary" @click="emit('quit-exercice')">Back to the table</button>
+                    <button class="btn-success primary" @click="emit('next-exercice')">Another Exercise</button>
+                </div>
+            </div>
+        </div>
 
         <v-stage :config="StageConfig">
             <v-layer>
@@ -155,6 +163,7 @@
             font-weight: bold;
         }
     }
+    
     .feedback-text {
         font-family: $font-secondary;
         position: absolute;
@@ -164,10 +173,90 @@
         font-size: 16px;
         font-weight: bold;
         margin: 10px 0 0 0;
-        color: rgb(255, 255, 255);
-        
-        &.success {
-            color: #97ff9a;
+        color: white;
+        z-index: 90;
+        pointer-events: none;
+    }
+
+    .success-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(18, 5, 20, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+    }
+
+    .success-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .success-bubble {
+        background-image: url('@/assets/img/bg-btn.svg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        width: 500px;
+        height: 150px;
+        padding: 30px 40px;
+        box-sizing: border-box;
+
+        h3 {
+            font-family: $font-secondary;
+            font-size: 24px;
+            color: $color-secondary;
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+
+        p {
+            font-family: $font-secondary;
+            font-size: 16px;
+            color: $color-primary;
+            margin: 0;
+            line-height: 1.4;
+            text-align: left;
+        }
+    }
+
+    .success-buttons {
+        display: flex;
+        gap: 8px;
+    }
+
+    .btn-success {
+        font-family: $font-secondary;
+        font-size: 15px;
+        padding: 10px 25px;
+        background-image: url('@/assets/img/bg-btn.svg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 180px; 
+        transition: transform 0.2s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        &.secondary {
+            color: $color-primary;
+        }
+
+        &.primary {
+            color: $color-secondary;
+            font-weight: bold;
         }
     }
 </style>

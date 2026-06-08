@@ -157,7 +157,8 @@
                 :tarotCards="tarotCards" 
                 :StageConfig="StageConfig" 
                 :exercice="selectedExercice" 
-                @quit-exercice="currentMode = 'sandbox'" 
+                @quit-exercice="currentMode = 'sandbox'"
+                @next-exercice="startExercice"
             />
         </div>
     </div>
@@ -220,6 +221,7 @@
         
         .highlight {
             color: $color-secondary;
+            font-weight: bold;
         }
     }
 
@@ -259,6 +261,7 @@
 
         &.confirm {
             color: $color-secondary;
+            font-weight: bold;
         }
     }
 </style>
