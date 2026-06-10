@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Sandbox from '../views/Sandbox.vue'
+import Credits from '../views/Credits.vue'
 
 const routes = [
   {
@@ -11,13 +12,20 @@ const routes = [
   {
     path: '/Sandbox',
     name: 'sandbox',
-    component: Sandbox
+    component: Sandbox,
+    meta: {showNav: true}
+  },
+  {
+    path: '/Credits',
+    name: 'credits',
+    component: Credits,
+    meta: {showNav: true}
   }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes: routes
 })
 
 export default router

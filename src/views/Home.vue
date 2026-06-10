@@ -1,18 +1,23 @@
 <script setup>
-  import {ref, onMounted, onUnmounted} from 'vue';
+  import { ref, onMounted, onUnmounted } from 'vue';
 
   const hasScrolled = ref(false);
+  const isMounted = ref(false);
+  const currentYear = ref(new Date().getFullYear())
 
   const handleWheel = (event) => {
     if (event.deltaY > 0) {
       hasScrolled.value = true;
-    }else if (event.deltaY < 0) {
+    } else if (event.deltaY < 0) {
       hasScrolled.value = false;
     }
   };
 
   onMounted(() => {
     window.addEventListener('wheel', handleWheel);
+    setTimeout(() => {
+      isMounted.value = true;
+    }, 50);
   });
 
   onUnmounted(() => {
@@ -21,8 +26,7 @@
 </script>
 
 <template>
-
-  <div class="home-hero" :class="{ 'scrolled': hasScrolled }">
+  <div class="home-hero" :class="{ 'scrolled': hasScrolled, 'page-ready': isMounted }">
 
     <div class="decor-star top-left"></div>
     <div class="decor-star top-right"></div>
@@ -53,27 +57,26 @@
       <router-link to="/Sandbox" class="btn-start">
         Start to learn
       </router-link>
-
     </main>
 
     <footer class="credits">
-      © All rights reserved — Alyssa Beaufils
+      <p>&copy; {{ currentYear }} Alyssa Beaufils. All rights reserved for the original illustrations.</p>
     </footer>
 
   </div>
-
 </template>
 
 <style lang="scss">
   @import '../assets/styles/variables.scss';
+  
   body {
     margin: 0;
     padding: 0;
   }
 
-  .home-hero{
+  .home-hero {
     position: relative;
-    width : 100vw;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -84,9 +87,30 @@
     padding: 0;
   }
 
-  .home-hero.scrolled{
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% + 30px));
+    opacity: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1), 
+    opacity 0.8s ease-out;
+  }
 
-    .hero-content{
+  .home-hero.page-ready {
+    .hero-content {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+  }
+
+  .home-hero.scrolled.page-ready {
+    .hero-content {
       transform: translate(-50%, calc(-50% - 60px));
       opacity: 0;
       pointer-events: none;
@@ -97,20 +121,6 @@
       opacity: 1;
       pointer-events: auto;
     }
-  }
-
-  .hero-content{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), 
-    opacity 0.6s ease-out;
   }
 
   .explanation-content {
@@ -131,7 +141,7 @@
     opacity 0.6s ease-out;
   }
 
-  .credits{
+  .credits {
     position: absolute;
     bottom: 48px;
     font-family: $font-secondary;
@@ -156,7 +166,7 @@
     padding: 0;
   }
 
-  .explanation-title{
+  .explanation-title {
     font-family: $font-primary;
     font-weight: normal;
     font-size: 4rem;
@@ -165,17 +175,17 @@
     margin: 0;
   }
 
-  .intro-text{
+  .intro-text {
     font-size: 1.5rem;
     margin-bottom: 16px;
     color: $color-accent;
   }
 
-  .description{
+  .description {
     margin-bottom: 48px;
   }
 
-  .accent-color{
+  .accent-color {
     color: $color-accent;
   }
 
@@ -186,6 +196,7 @@
     background-image: url('@/assets/img/stars-decoration.svg');
     background-size: contain;
     background-repeat: no-repeat;
+    pointer-events: none;
   }
 
   .top-left {
@@ -215,7 +226,7 @@
     margin-top: 96px;
   }
 
-  .btn-start{
+  .btn-start {
     font-family: $font-secondary;
     background-color: $color-accent;
     color: $color-primary;
@@ -234,5 +245,4 @@
     background-color: lighten($color-accent, 8%);
     transition: background-color 0.3s ease;
   }
-
 </style>

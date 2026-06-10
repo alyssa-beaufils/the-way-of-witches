@@ -1,3 +1,10 @@
+<script setup>
+  import { RouterLink, useRoute } from 'vue-router'
+
+  const route = useRoute()
+  const currentYear = new Date().getFullYear()
+</script>
+
 <template>
   <div class="desktop-only-warning">
     <div class="warning-box">
@@ -10,9 +17,21 @@
       </div>
     </div>
     <footer class="credits">
-      © All rights reserved — Alyssa Beaufils
+      &copy; {{ currentYear }} Alyssa Beaufils. All rights reserved.
     </footer>
   </div>
+
+  <nav class="main-nav" v-if="route.meta.showNav">
+    <RouterLink to="/" class="nav-link">Home</RouterLink>
+    <span class="nav-divider">
+      <img src="@/assets/img/star-divider.svg" alt="Star Decoration" class="nav-divider-img"/>
+    </span>
+    <RouterLink to="/Sandbox" class="nav-link">Table</RouterLink>
+    <span class="nav-divider">
+      <img src="@/assets/img/star-divider.svg" alt="Star Decoration" class="nav-divider-img"/>
+    </span>
+    <RouterLink to="/Credits" class="nav-link">Credits</RouterLink>
+  </nav>
 
   <div id="app-container">
     <router-view />
@@ -23,87 +42,132 @@
 
   @import './assets/styles/variables.scss';
   body {
-      background-image: url("assets/img/table.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-      overflow-y: hidden;
+    background-image: url("assets/img/table.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow-y: hidden;
+  }
+
+  app-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: 32px;
+    right: 60px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    z-index: 4000;
+    user-select: none;
+  }
+
+  .nav-link {
+    font-family: $font-primary;
+    font-size: 28px;
+    color: $color-accent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: lighten($color-accent, 8%);
+      transform: scale(1.03);
+    }
+
+    &.router-link-active {
+      color: white;
+    }
+  }
+
+  .nav-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-divider-img {
+    width: 24px;
+    height: auto;
+    display: block;
   }
 
   .desktop-only-warning {
       display: none;
   }
 
-  .app-container {
-      width: 100%;
-      height: 100%;
-  }
-
   @media (max-width: 1023px) {
 
-      .desktop-only-warning {
-          display: flex;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          background-color: $color-primary;
-          z-index: 999999;
-          justify-content: center;
-          align-items: center;
-          padding: 20px;
-          box-sizing: border-box;
-      }
+    .main-nav {
+      display: none;
+    }  
 
-      .warning-box {
-          position: relative;
-          width: 100%;
-          max-width: 550px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-      }
+    .desktop-only-warning {
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: $color-primary;
+      z-index: 999999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
 
-      .warning-content {
-          width: 80%;
-          justify-content: center;
-          margin-top: -70px;
-          text-align: left;
-          font-family: $font-secondary;
-          color: $color-accent;
+    .warning-box {
+      position: relative;
+      width: 100%;
+      max-width: 550px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .warning-content {
+      width: 80%;
+      justify-content: center;
+      margin-top: -70px;
+      text-align: left;
+      font-family: $font-secondary;
+      color: $color-accent;
           
-          h2 {
-              font-size: 28px;
-              margin-bottom: 12px;
-              color: $color-accent;
-          }
-
-          p {
-              font-size: 18px;
-              line-height: 1.5;
-              margin: 24px 0;
-          }
-      }
-
-      .decor-star-mobile {
-        width: 120px;
-        height: 90px;
-        margin: 0;
-        padding: 0;
-        background-image: url('@/assets/img/stars-decoration.svg');
-        background-size: contain;
-        background-repeat: no-repeat;
-
-        transform: rotateX(180deg);
-      }
-
-      .credits{
-        font-family: $font-secondary;
+      h2 {
+        font-size: 28px;
+        margin-bottom: 12px;
         color: $color-accent;
       }
 
-      .app-container {
-          display: none !important;
+      p {
+        font-size: 18px;
+        line-height: 1.5;
+        margin: 24px 0;
       }
+    }
+
+    .decor-star-mobile {
+      width: 120px;
+      height: 90px;
+      margin: 0;
+      padding: 0;
+      background-image: url('@/assets/img/stars-decoration.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      transform: rotateX(180deg);
+    }
+
+    .credits{
+      font-family: $font-secondary;
+      color: $color-accent;
+    }
+
+    .app-container {
+      display: none !important;
+    }
 }
 </style>

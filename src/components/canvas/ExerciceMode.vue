@@ -1,5 +1,5 @@
 <script setup>
-    import { ref, watch, computed, onUnmounted } from 'vue'
+    import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
     import Card from './Card.vue'
 
     const props = defineProps({
@@ -33,7 +33,7 @@
     showSuccessModal.value = false
     feedbackMessage.value = ''
     isSuccess.value = false
-})
+    })
 
     const handleCardDrop = ({ activeId, targetId, orientation }) => {
         if (targetId && targetId.toString() === '999') {
@@ -55,10 +55,21 @@
             }
         }
     }
+
+    onMounted(() => {
+        const globalNav = document.querySelector('.main-nav')
+        if (globalNav) globalNav.style.display = 'none'
+    })
+
+    onUnmounted(() => {
+        const globalNav = document.querySelector('.main-nav')
+        if (globalNav) globalNav.style.display = 'flex'
+    })
 </script>
 
 <template>
     <div class="exercice-layout">
+        <button class="exit-exercice-btn" @click="emit('quit-exercice')"><img src="@/assets/img/exit-icon.svg" class="door-icon" alt="Exit Exercice" /></button>
         <div class="instruction-header">
             <div class="instruction-bubble">
                 <p class="instruction-text" v-html="exercice.question"></p>
@@ -129,6 +140,26 @@
         position: relative;
         width: 100vw;
         height: 100vh;
+    }
+
+    .exit-exercice-btn {
+        position: absolute;
+        top: 24px;
+        right: 60px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 5000;
+        transition: transform 0.2s ease, color 0.2s ease;
+
+        .door-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        &:hover {
+            transform: scale(1.1) translateX(2px);
+        }
     }
     .instruction-header {
         position: absolute;

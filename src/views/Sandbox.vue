@@ -12,6 +12,7 @@ import Board from '../components/canvas/Board.vue'
 </template>
 
 <style scoped lang="scss">
+
 .sandbox-container {
     background-image: url("@/assets/img/table.jpg");
     background-size: cover;
