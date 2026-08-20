@@ -213,7 +213,6 @@
 
     &:hover {
       background-color: lighten($color-accent, 8%);
-      transform: scale(1.02);
     }
   }
 
