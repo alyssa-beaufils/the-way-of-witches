@@ -72,6 +72,8 @@
         const layer = node.getLayer()
         const sourceBox = node.getClientRect()
 
+        if (stage) stage.container().style.cursor = 'grab'
+
         let collidedCardId = null
 
         const allCards = stage.find('.card-node')
@@ -130,6 +132,9 @@
     const onDragStart = (e) => {
         const node = e.target
         const layer = node.getLayer()
+        const stage = node.getStage()
+
+        if (stage) stage.container().style.cursor = 'grabbing'
         
         node.moveToTop()
         if (layer) layer.batchDraw()
