@@ -13,21 +13,14 @@
     const feedbackMessage = ref('')
     const isSuccess = ref(false)
     const showSuccessModal = ref(false)
-    const targetCardImgObj = ref(null)
 
     const targetCard = computed(() => {
         return props.tarotCards.find(c => c.id === props.exercice.targetCardId)
     })
 
-    watch(() => targetCard.value, (newCard) => {
-        if (!newCard) return
-        
-        const img = new Image()
-        img.src = newCard.image
-        img.onload = () => {
-            targetCardImgObj.value = img
-        }
-    }, { immediate: true })
+    const targetCardImgObj = computed(() => {
+        return targetCard.value?.imageObj || null
+    })
 
     watch(() => props.exercice, () => {
     showSuccessModal.value = false
@@ -94,20 +87,22 @@
         <v-stage :config="StageConfig">
             <v-layer>
                 
-                <v-image v-if="targetCardImgObj" :config="{
-                    x: 628, 
-                    y: 240, 
-                    width: 130, 
-                    height: 220,
-                    image: targetCardImgObj,
-                    cornerRadius: 6
-                }" />
+                <Card
+                    v-if="targetCard"
+                    :id="targetCard.id" 
+                    :image-obj="targetCard.imageObj"
+                    :image-src="targetCard.image"
+                    :x="628" 
+                    :y="240" 
+                    :allow-flip-on-click="false" 
+                    :is-interactive="false"
+                />
 
                 <v-rect :config="{
                     x: 778, 
                     y: 240, 
-                    width: 130, 
-                    height: 220,
+                    width: 120, 
+                    height: 200,
                     stroke: '#86159B',
                     fill: 'rgba(24, 0, 24, 0.500)',
                     strokeWidth: 2, 
@@ -118,10 +113,11 @@
                 }" />
 
                 <Card 
-                    v-for="(card, index) in tarotCards" 
+                    v-for="(card, index) in props.tarotCards" 
                     :key="'ex-'+card.id" 
                     :id="card.id" 
-                    :imageSrc="card.image"
+                    :image-obj="card.imageObj"
+                    :image-src="card.image"
                     :x="80 + (index * 140)" 
                     :y="550"
                     :allow-flip-on-click="true"

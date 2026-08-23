@@ -1,19 +1,20 @@
 <script setup>
-    import { ref, onMounted, onUnmounted } from 'vue'
+    import { ref, onMounted, onUnmounted, computed } from 'vue'
     import Character from './Character.vue'
     import Card from './Card.vue'
-    import tarotData from '@/assets/data/cards.json'
     import CardModal from './CardModal.vue'
     import FusionModal from './FusionModal.vue'
     import FusionData from '@/assets/data/fusion_logic.json'
     import ExerciceData from '@/assets/data/exercice.json'
     import ExerciceMode from './ExerciceMode.vue'
 
-    const tarotCards = tarotData
-    const listExercices = ExerciceData
+    const props = defineProps({
+        tarotCards: { type: Array, required: true }
+    })
 
+    const listExercices = ExerciceData
     const fusionCard = new Map(FusionData.map(c => [c.id, c]))
-    const tarotCard = new Map(tarotData.map(c => [c.id, c]))
+    const tarotCard = computed(() => new Map(props.tarotCards.map(c => [c.id, c])))
 
     const selectedCard = ref(null)
     const selectedFusion = ref(null)
@@ -52,8 +53,8 @@
     const closeModal = () => { selectedCard.value = null }
 
     const handleFusion = ({ activeId, targetId }) => {
-        const visualCardA = tarotCard.get(activeId)
-        const visualCardB = tarotCard.get(targetId)
+        const visualCardA = tarotCard.value.get(activeId)
+        const visualCardB = tarotCard.value.get(targetId)
         const fusionCardA = fusionCard.get(activeId)
         const fusionCardB = fusionCard.get(targetId)
 
@@ -118,9 +119,10 @@
                 </v-layer>
                 <v-layer>
                     <Card 
-                        v-for="(card, index) in tarotCards" 
+                        v-for="(card, index) in props.tarotCards" 
                         :key="card.id"
                         :id="card.id"
+                        :imageObj="card.imageObj"
                         :imageSrc="card.image"
                         :x="400 + (index % 5) * 150"
                         :y="320 + Math.floor(index / 5) * 220"
@@ -154,7 +156,7 @@
 
         <div v-else-if="currentMode === 'exercice'" class="exercice-layout">
             <ExerciceMode 
-                :tarotCards="tarotCards" 
+                :tarotCards="props.tarotCards" 
                 :StageConfig="StageConfig" 
                 :exercice="selectedExercice" 
                 @quit-exercice="currentMode = 'sandbox'"

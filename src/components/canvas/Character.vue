@@ -42,9 +42,13 @@
     onMounted(() => {
         const img = new window.Image()
         img.src = MentorPath
-        img.onload = () => {
+        if (img.complete) {
             CharacterImg.value = img
-        }   
+        } else {
+            img.onload = () => {
+                CharacterImg.value = img
+            }
+        }
     })
 </script>
 
