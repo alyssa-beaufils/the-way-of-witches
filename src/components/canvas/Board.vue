@@ -27,10 +27,6 @@
     const handleCharacterClick = () => {
         if (currentMode.value === 'sandbox') {
             isDialogueOpen.value = true
-            
-            if (mentorComponentRef.value) {
-                mentorComponentRef.value.jump()
-            }
         }
     }
 

@@ -5,36 +5,52 @@
     const emit = defineEmits(['character-interaction'])
     const characterRef = ref(null)
     const CharacterImg = ref(null)
+    const isJumping = ref(false)
+
+    const originalY = 140 
+    const jumpHeight = 30  
+    let activeTween = null
 
     const jump = () => {
-        if (!characterRef.value) return
-        
-        const node = characterRef.value.getNode()
-        const originalY = 140 
-        const jumpHeight = 30  
+        if (!characterRef.value || isJumping.value) return
 
-        const upTween = new window.Konva.Tween({
+        const node = characterRef.value.getNode()
+        isJumping.value = true
+
+        activeTween = new window.Konva.Tween({
             node: node,
-            duration: 0.25,
+            duration: 0.22,
             y: originalY - jumpHeight,
             easing: window.Konva.Easings.EaseOut,
-
             onFinish: () => {
-                upTween.destroy()
-                
-                const downTween = new window.Konva.Tween({
-                    node: node,
-                    duration: 0.15,
-                    y: originalY,
-                    easing: window.Konva.Easings.EaseOut,
-                    onFinish: () => {
-                        downTween.destroy()
-                    }
-                })
-                downTween.play()
+            activeTween?.destroy()
+
+            activeTween = new window.Konva.Tween({
+                node: node,
+                duration: 0.16,
+                y: originalY,
+                easing: window.Konva.Easings.EaseIn,
+                onFinish: () => {
+                activeTween?.destroy()
+                activeTween = null
+                isJumping.value = false
+                }
+            })
+            activeTween.play()
             }
         })
-        upTween.play()
+        activeTween.play()
+    }
+
+    const onMouseEnter = (e) => {
+        const stage = e.target.getStage()
+        if (stage) stage.container().style.cursor = 'pointer'
+        jump()
+    }
+
+    const onMouseLeave = (e) => {
+        const stage = e.target.getStage()
+        if (stage) stage.container().style.cursor = 'default'
     }
 
     defineExpose({ jump })
@@ -64,7 +80,7 @@
             height: 165
         }"
         @click="emit('character-interaction')"
-        @mouseenter="$event.target.getStage().container().style.cursor = 'pointer'"
-        @mouseleave="$event.target.getStage().container().style.cursor = 'default'"
+        @mouseenter="onMouseEnter"
+        @mouseleave="onMouseLeave"
     />
 </template>
