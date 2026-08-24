@@ -26,7 +26,7 @@
     <span class="nav-divider">
       <img src="@/assets/img/star-divider.svg" alt="Star Decoration" class="nav-divider-img"/>
     </span>
-    <RouterLink to="/Sandbox" class="nav-link">Table</RouterLink>
+    <RouterLink to="/Sandbox" class="nav-link">Cards</RouterLink>
     <span class="nav-divider">
       <img src="@/assets/img/star-divider.svg" alt="Star Decoration" class="nav-divider-img"/>
     </span>
@@ -56,7 +56,7 @@
   .main-nav {
     position: absolute;
     top: 32px;
-    right: 60px;
+    right: 48px;
     display: flex;
     align-items: center;
     gap: 18px;
@@ -79,6 +79,9 @@
 
     &.router-link-active {
       color: white;
+      text-decoration: underline;
+      text-decoration-color: white;
+      text-decoration-thickness: 2px;
     }
   }
 
