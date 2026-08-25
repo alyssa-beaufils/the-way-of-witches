@@ -1,1 +1,17 @@
-/* Comme bootstrap, je créer mes classes une fois et je les réutilise partout où c'est nécessaire. */
+@mixin card-tilt-hover {
+  transform-origin: center center;
+  transition: transform 0.30s cubic-bezier(0.40, 1.40, 0.80, 1);
+  transform: rotate(0deg);
+
+  &:hover {
+    transform: rotate(-6deg);
+  }
+
+  &.isFlipped {
+    transform: rotate(-180deg);
+
+    &:hover {
+      transform: rotate(-186deg);
+    }
+  }
+}

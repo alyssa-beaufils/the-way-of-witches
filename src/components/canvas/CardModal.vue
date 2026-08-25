@@ -49,7 +49,7 @@
 </template>
 
 <style scoped lang="scss">
-    @import '../../assets/styles/variables.scss';
+    @import '../../assets/styles/main.scss';
 
     .modal-overlay{
         position: fixed;
@@ -117,11 +117,7 @@
         width: 300px;
         height: auto;
         margin-top: 45px;
-        transition: transform 0.4s cubic-bezier(0.40, 1.40, 0.80, 1);
-    }
-
-    .card-img.isFlipped{
-        transform: rotate(-180deg);
+        @include card-tilt-hover;
     }
 
     .click-instruction{
