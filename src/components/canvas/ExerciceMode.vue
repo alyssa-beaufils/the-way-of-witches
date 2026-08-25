@@ -200,9 +200,12 @@
         font-size: 16px;
         font-weight: bold;
         margin: 10px 0 0 0;
-        color: white;
-        z-index: 90;
+        color: $color-accent;
+        z-index: 0;
         pointer-events: none;
+        background-color: rgba(29, 7, 32, 0.523);
+        border-radius: 8px;
+        padding: 8px 16px;
     }
 
     .success-overlay {
