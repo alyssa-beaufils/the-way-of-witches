@@ -11,7 +11,7 @@
         isInteractive: { type: Boolean, default: true }
     })
 
-    const emit = defineEmits(['select-card', 'fuse-card'])
+    const emit = defineEmits(['select-card', 'fuse-card', 'inspect-card'])
 
     const konvaImageRef = ref(null)
     const isReversed = ref(false)
@@ -19,6 +19,7 @@
 
     let tiltTween = null
     let flipTween = null
+    let clickTimeout = null
 
     const safeDestroyTween = (tween) => {
         if (tween) {
@@ -98,7 +99,7 @@
         tiltTween.play()
     }
 
-    const handleCardClick = (e) => {
+    const triggerCardFlip = (e) => {
         if (!props.isInteractive || isDragging.value) return
 
         if (props.allowFlipOnClick) {
@@ -123,6 +124,21 @@
             flipTween.play()
         } else {
             emit('select-card', props.id)
+        }
+    }
+
+    const handleCardClick = (e) => {
+        if (!props.isInteractive || isDragging.value) return
+
+        if (clickTimeout) {
+            clearTimeout(clickTimeout)
+            clickTimeout = null
+            emit('inspect-card', props.id)
+        } else {
+            clickTimeout = setTimeout(() => {
+                triggerCardFlip()
+                clickTimeout = null
+            }, 200)
         }
     }
 

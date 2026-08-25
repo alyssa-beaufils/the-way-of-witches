@@ -1,6 +1,7 @@
 <script setup>
     import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
     import Card from './Card.vue'
+    import CardInspectModal from './CardInspectModal.vue'
 
     const props = defineProps({
         tarotCards: { type: Array, required: true },
@@ -14,6 +15,12 @@
     const isSuccess = ref(false)
     const showSuccessModal = ref(false)
 
+    const inspectedCard = ref(null)
+
+    const openInspect = (cardId) => {
+        inspectedCard.value = props.tarotCards.find(c => c.id === cardId) || null
+    }
+
     const targetCard = computed(() => {
         return props.tarotCards.find(c => c.id === props.exercice.targetCardId)
     })
@@ -26,6 +33,7 @@
     showSuccessModal.value = false
     feedbackMessage.value = ''
     isSuccess.value = false
+    inspectedCard.value = null
     })
 
     const handleCardDrop = ({ activeId, targetId, orientation }) => {
@@ -84,6 +92,12 @@
             </div>
         </div>
 
+        <CardInspectModal
+            v-if="inspectedCard"
+            :card="inspectedCard"
+            @close="inspectedCard = null"
+        />
+
         <v-stage :config="StageConfig">
             <v-layer>
                 
@@ -121,7 +135,8 @@
                     :x="80 + (index * 140)" 
                     :y="550"
                     :allow-flip-on-click="true"
-                    @fuse-card="handleCardDrop" 
+                    @inspect-card="openInspect"
+                    @fuse-card="handleCardDrop"
                 />
 
             </v-layer>
