@@ -4,6 +4,7 @@
     import Card from './Card.vue'
     import CardModal from './CardModal.vue'
     import FusionModal from './FusionModal.vue'
+    import RulesModal from './RulesModal.vue'
     import FusionData from '@/assets/data/fusion_logic.json'
     import ExerciceData from '@/assets/data/exercice.json'
     import ExerciceMode from './ExerciceMode.vue'
@@ -19,6 +20,7 @@
     const selectedCard = ref(null)
     const selectedFusion = ref(null)
     const selectedExercice = ref(null)
+    const isRulesOpen = ref(false)
 
     const currentMode = ref('sandbox')
     const isDialogueOpen = ref(false)
@@ -106,6 +108,9 @@
 <template>
     <div class="board-wrapper">
         <div v-if="currentMode === 'sandbox'" class="sandbox-layout">
+            <button class="help-btn" @click="isRulesOpen = true">
+                <img src="@/assets/img/help-icon.svg" class="help-icon" alt="Need help?" />
+            </button>
             <v-stage :config="StageConfig">
                 <v-layer>
                     <Character
@@ -147,6 +152,11 @@
             <FusionModal v-if="selectedFusion"
             :combo="selectedFusion"
             @close="selectedFusion = null"
+            />
+
+            <RulesModal 
+                v-if="isRulesOpen"
+                @close="isRulesOpen = false"
             />
         </div>
 
@@ -260,6 +270,26 @@
         &.confirm {
             color: $color-secondary;
             font-weight: bold;
+        }
+    }
+
+    .help-btn {
+        position: absolute;
+        bottom: 48px;
+        right: 48px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 5000;
+        transition: transform 0.2s ease, color 0.2s ease;
+
+        .help-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        &:hover {
+            transform: scale(1.1) translateX(2px);
         }
     }
 </style>
