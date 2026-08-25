@@ -53,7 +53,6 @@
         width: 100vw;
         height: 100vh;
         background-color: rgba(24, 0, 24, 0.773);
-        backdrop-filter: blur(4px);
         display: flex;
         justify-content: center;
         align-items: center;
