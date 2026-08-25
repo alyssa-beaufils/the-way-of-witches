@@ -12,8 +12,8 @@
         <div class="decor-star-mobile"></div>
         <h2>Hold on, fellow mystic!</h2>
         <p>It looks like you're trying to open this interactive Tarot experience on a smaller screen.</p>
-        <p>We designed this interactive Tarot board with lots of tiny details, drag-and-drop mechanics, and features that simply don't fit into a pocket just yet!</p>
-        <p>Please resize your window or come back on a computer to start your journey. The cards will be waiting for you!</p>
+        <p>We designed this interactive Tarot board with lots of tiny details, drag-and-drop mechanics, and features that simply don't fit into a portrait mode just yet!</p>
+        <p>Please rotate your device or come back on a computer to start your journey. The cards will be waiting for you!</p>
       </div>
     </div>
     <footer class="credits">
@@ -101,7 +101,7 @@
       display: none;
   }
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1023px) and (orientation: portrait), screen and (max-width: 600px) {
 
     .main-nav {
       display: none;

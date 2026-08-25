@@ -1,6 +1,13 @@
 @import './variables';
 @import './mixins';
 
+.board-wrapper, .sandbox-layout, .exercice-layout {
+  touch-action: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+  overflow: hidden;
+}
+
 
 // #app {
 //   max-width: 1280px;
