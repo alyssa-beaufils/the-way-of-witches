@@ -55,7 +55,7 @@
 
   .main-nav {
     position: absolute;
-    top: 32px;
+    top: 28px;
     right: 48px;
     display: flex;
     align-items: center;
