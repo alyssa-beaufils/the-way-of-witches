@@ -162,9 +162,9 @@
 
         .modal-content {
             width: 650px;
-            max-width: 72vw;
+            max-width: 550px;
             height: 400px;
-            padding: 13% 5% 5% 10%;
+            padding: 90px 45px 35px 70px;
         }
 
         .card-display-zone {
