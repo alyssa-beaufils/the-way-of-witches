@@ -95,6 +95,11 @@
                         />
                     </div>
                 </TransitionGroup>
+
+                <button class="btn-swap-touch" @click="isSwapped = !isSwapped">
+                    <img src="@/assets/img/swap-icon.svg" alt="Swap Cards Icon" class="swap-icon" />
+                    Swap Cards Order
+                </button>
                 <p class="click-instruction">Click on a card to flip it and alter the meaning or drag over to swap order!</p>
             </div>
 
@@ -128,7 +133,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 1000;
+        z-index: 9000;
     }
 
     .modal-container {
@@ -145,7 +150,9 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
         width: 800px;
+        max-width: 75vw;
         height: 500px;
+        max-height: 90vh;
         padding: 130px 75px 55px 130px;
         display: flex;
         flex-direction: column;
@@ -225,6 +232,7 @@
         color: $color-secondary;
         margin: 0 0 32px 0;
         text-align: left;
+        flex-shrink: 0;
     }
 
     .text-zone {
@@ -233,6 +241,7 @@
         flex-direction: column;
         gap: 24px;
         padding-right: 20px;
+        flex: 1;
     }
 
     .card-meaning {
@@ -247,5 +256,136 @@
 
     .card-swap-move {
         transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .btn-swap-touch {
+        display: none;
+    }
+
+    @media screen and (max-width: 930px) and (orientation: landscape) {
+        .modal-container {
+            width: 98vw;
+        }
+
+        .modal-content {
+            width: 400px;
+            max-width: 75vw;
+            height: 90vh;
+            padding: 135px 20px 15px 45px;
+        }
+
+        .cards-display-zone {
+            margin-right: -15px;
+        }
+
+        .cards-duo-layout {
+            gap: 6px;
+        }
+
+        .card-img {
+            width: 120px;
+            justify-self: center;
+        }
+
+        .btn-swap-touch {
+            display: inline-block;
+            padding: 8px 10px;
+            font-size: 11px;
+            margin-top: 16px;
+            background-color: $color-secondary;
+            border: none;
+            border-radius: 4px;
+            font-family: $font-secondary;
+            color: white;
+        }
+
+        .swap-icon {
+            width: 12px;
+            height: 12px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        .click-instruction {
+            display: none;
+        }
+
+        .btn-close-modal {
+            top: 110px;
+            right: 18px;
+            font-size: 20px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            margin-bottom: 6px;
+            padding-right: 20px;
+        }
+
+        .card-meaning {
+            font-size: 12px;
+            line-height: 1.35;
+        }
+    }
+
+    @media screen and (min-width: 931px) and (max-width: 1200px) and (orientation: landscape) {
+        .modal-content {
+            width: 520px;
+            max-width: 65vw;
+            height: 440px;
+            max-height: 86vh;
+            padding: 150px 40px 30px 85px;
+        }
+
+        .cards-display-zone {
+            margin-right: -55px;
+        }
+
+        .cards-duo-layout {
+            gap: 10px;
+        }
+
+        .card-img {
+            width: 155px;
+            justify-self: center;
+        }
+
+        .btn-swap-touch {
+            display: inline-block;
+            padding: 8px 10px;
+            font-size: 14px;
+            margin-top: 16px;
+            background-color: $color-secondary;
+            border: none;
+            border-radius: 4px;
+            font-family: $font-secondary;
+            color: white;
+        }
+
+        .swap-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        .click-instruction {
+            display: none;
+        }
+
+        .btn-close-modal {
+            top: 100px;
+            right: 34px;
+            font-size: 26px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            margin-bottom: 12px;
+        }
+
+        .card-meaning {
+            font-size: 14px;
+        }
     }
 </style>

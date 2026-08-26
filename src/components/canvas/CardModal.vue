@@ -237,7 +237,7 @@
         }
 
         .card-meaning {
-            font-size: 14.5px;
+            font-size: 14px;
         }
     }
 </style>
