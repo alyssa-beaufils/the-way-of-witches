@@ -148,7 +148,7 @@
       flex-direction: column;
       justify-content: space-around;
       position: fixed;
-      top: 24px;
+      top: 16px;
       right: 24px;
       width: 48px;
       height: 48px;
@@ -256,6 +256,7 @@
 
     .desktop-only-warning {
       display: flex;
+      flex-direction: column;
       position: fixed;
       top: 0;
       left: 0;

@@ -5,6 +5,8 @@
   const isMounted = ref(false);
   const currentYear = ref(new Date().getFullYear())
 
+  let touchStartY = 0;
+
   const handleWheel = (event) => {
     if (event.deltaY > 0) {
       hasScrolled.value = true;
@@ -13,8 +15,30 @@
     }
   };
 
+  const handleTouchStart = (event) => {
+    if (event.touches && event.touches.length > 0) {
+      touchStartY = event.touches[0].clientY;
+    }
+  };
+
+  const handleTouchEnd = (event) => {
+    if (event.changedTouches && event.changedTouches.length > 0) {
+      const touchEndY = event.changedTouches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+
+      if (deltaY > 40) {
+        hasScrolled.value = true;
+      } else if (deltaY < -40) {
+        hasScrolled.value = false;
+      }
+    }
+  };
+
   onMounted(() => {
     window.addEventListener('wheel', handleWheel);
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+
     setTimeout(() => {
       isMounted.value = true;
     }, 50);
@@ -22,6 +46,8 @@
 
   onUnmounted(() => {
     window.removeEventListener('wheel', handleWheel);
+    window.removeEventListener('touchstart', handleTouchStart);
+    window.removeEventListener('touchend', handleTouchEnd);
   });
 </script>
 
@@ -244,5 +270,108 @@
   .btn-start:hover {
     background-color: lighten($color-accent, 8%);
     transition: background-color 0.3s ease;
+  }
+
+  @media screen and (max-width: 930px) and (orientation: landscape) {
+    .decor-star {
+      width: 68px !important;
+      height: 68px !important;
+    }
+
+    .main-title {
+      font-size: 5rem;
+    }
+
+    .main-subtitle {
+      margin-top: 8px;
+      font-size: 1.2rem;
+    }
+
+    .scroll-indicator {
+      margin-top: 14px;
+    }
+
+    .explanation-title {
+      font-size: 2.5rem;
+    }
+
+    .intro-text {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .explanation-content {
+      max-height: 88vh;
+      width: 65vw;
+    }
+
+    .description {
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .tutorial {
+      display: none;
+    }
+
+    .btn-start {
+      margin-top: 12px;
+      margin-bottom: 8px;
+      padding: 10px 10px;
+      font-size: 1rem;
+    }
+
+    .credits {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 931px) and (max-width: 1200px) and (orientation: landscape) {
+    .main-title {
+      font-size: 7rem;
+    }
+
+    .main-subtitle {
+      margin-top: 8px;
+      font-size: 1.5rem;
+    }
+
+    .scroll-indicator {
+      margin-top: 14px;
+    }
+
+    .explanation-title {
+      font-size: 2.5rem;
+    }
+
+    .intro-text {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .explanation-content {
+      max-height: 88vh;
+      width: 65vw;
+    }
+
+    .description {
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .tutorial {
+      font-size: 0.95rem;
+    }
+
+    .btn-start {
+      margin-top: 12px;
+      margin-bottom: 8px;
+      padding: 10px 10px;
+      font-size: 1rem;
+    }
+
+    .credits {
+      display :none;
+    }
   }
 </style>
