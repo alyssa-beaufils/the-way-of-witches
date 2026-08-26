@@ -1,8 +1,23 @@
 <script setup>
   import { RouterLink, useRoute } from 'vue-router'
+  import { ref, watch } from 'vue'
 
   const route = useRoute()
   const currentYear = new Date().getFullYear()
+
+  const isMenuOpen = ref(false)
+
+  const toggleMenu = () => {
+    isMenuOpen.value = !isMenuOpen.value
+  }
+
+  const closeMenu = () => {
+    isMenuOpen.value = false
+  }
+
+  watch(() => route.fullPath, () => {
+    closeMenu()
+  })
 </script>
 
 <template>
@@ -11,9 +26,8 @@
       <div class="warning-content">
         <div class="decor-star-mobile"></div>
         <h2>Hold on, fellow mystic!</h2>
-        <p>It looks like you're trying to open this interactive Tarot experience on a smaller screen.</p>
-        <p>We designed this interactive Tarot board with lots of tiny details, drag-and-drop mechanics, and features that simply don't fit into a portrait mode just yet!</p>
-        <p>Please rotate your device or come back on a computer to start your journey. The cards will be waiting for you!</p>
+        <p>We designed this interactive Tarot board with lots of tiny details, drag-and-drop mechanics, and features that simply don't fit into portrait mode just yet!</p>
+        <p>Please <strong>rotate your device</strong> or come back on a computer to start your journey. The cards will be waiting for you!</p>
       </div>
     </div>
     <footer class="credits">
@@ -21,17 +35,40 @@
     </footer>
   </div>
 
-  <nav class="main-nav" v-if="route.meta.showNav">
-    <RouterLink to="/" class="nav-link">Home</RouterLink>
+  <button
+    v-if="route.meta.showNav"
+    class="burger-btn"
+    :class="{ 'is-open': isMenuOpen }"
+    @click="toggleMenu"
+  >
+    <span class="burger-bar"></span>
+    <span class="burger-bar"></span>
+    <span class="burger-bar"></span>
+  </button>
+
+  <nav
+    class="main-nav"
+    v-if="route.meta.showNav"
+    :class="{ 'is-open': isMenuOpen }"
+  >
+    <button class="burger-close-btn" @click="closeMenu">&#x2715;</button>
+
+    <RouterLink to="/" class="nav-link" @click="closeMenu">Home</RouterLink>
     <span class="nav-divider">
       <img src="@/assets/img/star-divider.svg" alt="Star Decoration" class="nav-divider-img"/>
     </span>
-    <RouterLink to="/Sandbox" class="nav-link">Cards</RouterLink>
+    <RouterLink to="/Sandbox" class="nav-link" @click="closeMenu">Cards</RouterLink>
     <span class="nav-divider">
       <img src="@/assets/img/star-divider.svg" alt="Star Decoration" class="nav-divider-img"/>
     </span>
-    <RouterLink to="/Credits" class="nav-link">Credits</RouterLink>
+    <RouterLink to="/Credits" class="nav-link" @click="closeMenu">Credits</RouterLink>
   </nav>
+
+  <div
+    v-if="isMenuOpen"
+    class="burger-overlay"
+    @click="closeMenu"
+  ></div>
 
   <div id="app-container">
     <router-view />
@@ -62,6 +99,10 @@
     gap: 18px;
     z-index: 4000;
     user-select: none;
+  }
+
+  .burger-btn, .burger-close-btn, .burger-overlay{
+    display: none;
   }
 
   .nav-link {
@@ -98,14 +139,120 @@
   }
 
   .desktop-only-warning {
-      display: none;
+    display: none;
   }
 
-  @media (max-width: 1023px) and (orientation: portrait), screen and (max-width: 600px) {
+  @media screen and (max-width: 1200px) and (orientation: landscape) {
+    .burger-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      padding: 8px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 4500;
+      transition: transform 0.2s ease;
 
+      .burger-bar {
+        width: 100%;
+        height: 3px;
+        background-color: $color-accent;
+        border-radius: 2px;
+      }
+    }
+  
     .main-nav {
-      display: none;
-    }  
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 350px;
+      height: 100vh;
+      background-color: $color-primary;
+      border-left: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+      z-index: 9000;
+
+      &.is-open {
+        transform: translateX(0);
+      }
+    }
+
+    .burger-close-btn {
+      display: block;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: $color-accent;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+
+    .nav-divider-img {
+      width: 32px;
+      margin: 0;
+    }
+
+    .burger-overlay {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(24, 0, 24, 0.477);
+      z-index: 4800;
+    }
+
+  }
+
+  @media screen and (min-width: 931px) and (max-width: 1200px) and (orientation: landscape) {
+    .main-nav {
+      width: 300px;
+      gap: 24px;
+    }
+
+    .burger-close-btn {
+      font-size: 32px;
+    }
+
+    .nav-link {
+      font-size: 32px;
+    }
+  }
+
+  @media screen and (max-width: 930px) and (orientation: landscape) {
+    .main-nav {
+      width: 230px;
+      gap: 20px;
+    }
+
+    .burger-close-btn {
+      font-size: 28px;
+    }
+
+    .nav-link {
+      font-size: 24px;
+    }
+  }
+
+  @media screen and (orientation: portrait), screen and (max-width: 650px) {
 
     .desktop-only-warning {
       display: flex;
@@ -172,5 +319,6 @@
     .app-container {
       display: none !important;
     }
-}
+  }
+
 </style>
