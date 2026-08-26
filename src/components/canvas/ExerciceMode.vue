@@ -57,14 +57,32 @@
         }
     }
 
+    const isMobile = ref(window.innerWidth <= 930)
+
+    const updateScreenSize = () => {
+        isMobile.value = window.innerWidth <= 930
+    }
+
+    const getCardPosition = (index) => {
+        if (isMobile.value) {
+            return {
+                x: 630 + (index % 5) * 145,
+                y: 320 + Math.floor(index / 5) * 220
+            }
+        }
+        return {
+            x: 80 + (index * 140),
+            y: 550
+        }
+    }
+
     onMounted(() => {
-        const globalNav = document.querySelector('.main-nav')
-        if (globalNav) globalNav.style.display = 'none'
+        updateScreenSize()
+        window.addEventListener('resize', updateScreenSize)
     })
 
     onUnmounted(() => {
-        const globalNav = document.querySelector('.main-nav')
-        if (globalNav) globalNav.style.display = 'flex'
+        window.removeEventListener('resize', updateScreenSize)
     })
 </script>
 
@@ -106,15 +124,15 @@
                     :id="targetCard.id" 
                     :image-obj="targetCard.imageObj"
                     :image-src="targetCard.image"
-                    :x="628" 
-                    :y="240" 
+                    :x="isMobile ? 260 : 628" 
+                    :y="isMobile ? 380 : 230" 
                     :allow-flip-on-click="false" 
                     :is-interactive="false"
                 />
 
                 <v-rect :config="{
-                    x: 778, 
-                    y: 240, 
+                    x: isMobile ? 410 : 778, 
+                    y: isMobile ? 380 : 230, 
                     width: 120, 
                     height: 200,
                     stroke: '#86159B',
@@ -132,8 +150,8 @@
                     :id="card.id" 
                     :image-obj="card.imageObj"
                     :image-src="card.image"
-                    :x="80 + (index * 140)" 
-                    :y="550"
+                    :x="getCardPosition(index).x" 
+                    :y="getCardPosition(index).y"
                     :allow-flip-on-click="true"
                     @inspect-card="openInspect"
                     @fuse-card="handleCardDrop"
@@ -233,7 +251,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 2000;
+        z-index: 9000;
     }
 
     .success-container {
@@ -302,6 +320,84 @@
         &.primary {
             color: $color-secondary;
             font-weight: bold;
+        }
+    }
+
+    @media screen and (max-width: 930px) and (orientation: landscape) {
+        .exit-exercice-btn {
+            display: none;
+        }
+
+        .instruction-bubble {
+            margin-top: 55px;
+            width: 520px;
+            max-width: 82vw;
+        }
+
+        .instruction-text {
+            font-size: 14px;
+            line-height: 1.3;
+        }
+
+        .feedback-text {
+            width: 200px;
+            max-width: 80vw;
+            font-size: 12px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            left: 20%;
+            top: 75%;
+
+        }
+
+        .success-container {
+            width: 420px;
+            gap: 8px;
+        }
+
+        .success-bubble {
+            padding: 30px;
+
+            h3 { 
+                font-size: 24px;
+                margin-bottom: 4px;
+            }
+            p {
+                font-size: 16px;
+            }
+        }
+
+        .success-buttons {
+            gap: 8px;
+        }
+
+        .btn-success {
+            font-size: 16px;
+            min-width: 120px;
+            padding: 10px 15px;
+        }
+    }
+
+    @media screen and (min-width: 931px) and (max-width: 1200px) and (orientation: landscape) {
+
+        .exit-exercice-btn {
+            display: none;
+        }
+
+        .instruction-bubble {
+            margin-top: 10px;
+            width: 560px;
+            max-width: 82vw;
+        }
+
+        .instruction-text {
+            font-size: 16px;
+            line-height: 1.3;
+        }
+
+        .feedback-text {
+            max-width: 80vw;
+            font-size: 14px;
         }
     }
 </style>
