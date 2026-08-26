@@ -143,7 +143,7 @@
         }
 
         .btn-close {
-            top: 48px;
+            top: 15%;
             right: 8%;
             font-size: 32px;
         }

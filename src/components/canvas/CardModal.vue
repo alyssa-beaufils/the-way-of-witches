@@ -61,7 +61,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 1000;
+        z-index: 9000;
     }
 
     .modal-container{
@@ -78,7 +78,9 @@
         background-size: 100% 100%;
         background-repeat: no-repeat;
         width: 925px;
+        max-width: 90vw;
         height: 500px;
+        max-height: 88vh;
         padding: 45px 75px 55px 130px;
         display: flex;
         flex-direction: column;
@@ -140,6 +142,7 @@
         flex-direction: column;
         gap: 24px;
         padding-right: 20px;
+        min-height: 0;
     }
 
     .card-meaning{
@@ -150,5 +153,91 @@
         margin: 0;
         padding: 0;
         text-align: left;
+    }
+
+    @media screen and (max-width: 930px) and (orientation: landscape) {
+        .modal-container {
+            width: 90vw;
+        }
+
+        .modal-content {
+            width: 650px;
+            max-width: 72vw;
+            height: 400px;
+            padding: 13% 5% 5% 10%;
+        }
+
+        .card-display-zone {
+            margin-right: -40px;
+        }
+
+        .card-img {
+            width: 130px;
+        }
+
+        .click-instruction {
+            font-size: 10.5px;
+            max-width: 120px;
+            text-align: center;
+        }
+
+        .btn-close-modal {
+            top: 20%;
+            right: 5%;
+            font-size: 22px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+            padding-right: 25px;
+        }
+
+        .text-zone {
+            gap: 10px;
+            padding-right: 6px;
+        }
+
+        .card-meaning {
+            font-size: 12.5px;
+            line-height: 1.35;
+        }
+    }
+
+    @media screen and (min-width: 931px) and (max-width: 1200px) and (orientation: landscape) {
+        .card-display-zone {
+            margin-right: -60px;
+        }
+
+        .card-img {
+            width: 200px;
+        }
+
+        .click-instruction {
+            font-size: 12px;
+        }
+
+        .modal-content {
+            width: 720px;
+            max-width: 72vw;
+            height: 440px;
+            max-height: 86vh;
+            padding: 55px 45px 35px 90px;
+        }
+
+        .btn-close-modal {
+            top: 14%;
+            right: 36px;
+            font-size: 26px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .card-meaning {
+            font-size: 14.5px;
+        }
     }
 </style>
