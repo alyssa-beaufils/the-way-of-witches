@@ -14,18 +14,15 @@
   transition: transform 0.35s cubic-bezier(0.40, 1.40, 0.80, 1);
   animation: hintWiggle 3.5s ease-in-out infinite;
 
-  &:hover {
-    animation-play-state: paused;
-    --tilt-angle: -6deg;
-  }
-
-  &.isFlipped {
-    --base-angle: -180deg;
-
+  @media (hover: hover) and (pointer: fine) {
     &:hover {
       animation-play-state: paused;
       --tilt-angle: -6deg;
     }
+  }
+
+  &.isFlipped {
+    --base-angle: -180deg;
   }
 }
 
