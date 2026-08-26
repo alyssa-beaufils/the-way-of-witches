@@ -1,5 +1,5 @@
 <script setup>
-    import { ref, watch, computed, onMounted, onUnmounted } from 'vue'
+    import { inject, ref, watch, computed, onMounted, onUnmounted } from 'vue'
     import Card from './Card.vue'
     import CardInspectModal from './CardInspectModal.vue'
 
@@ -76,13 +76,20 @@
         }
     }
 
+    const isNavVisible = inject('isNavVisible', null)
+
     onMounted(() => {
         updateScreenSize()
         window.addEventListener('resize', updateScreenSize)
+        const globalNav = document.querySelector('.main-nav')
+        if (globalNav) globalNav.style.display = 'none'
+
+        if (isNavVisible) isNavVisible.value = false
     })
 
     onUnmounted(() => {
         window.removeEventListener('resize', updateScreenSize)
+        if (isNavVisible) isNavVisible.value = true
     })
 </script>
 
@@ -324,8 +331,8 @@
     }
 
     @media screen and (max-width: 930px) and (orientation: landscape) {
-        .exit-exercice-btn {
-            display: none;
+        .exit-exercice-btn{
+            right: 15px;
         }
 
         .instruction-bubble {
@@ -378,12 +385,11 @@
         }
     }
 
-    @media screen and (min-width: 931px) and (max-width: 1200px) and (orientation: landscape) {
-
-        .exit-exercice-btn {
-            display: none;
+    @media screen and (min-width: 931px) and (max-width: 1200px) and (orientation: landscape) { 
+        .exit-exercice-btn{
+            right: 15px;
         }
-
+        
         .instruction-bubble {
             margin-top: 10px;
             width: 560px;

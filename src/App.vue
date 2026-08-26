@@ -1,11 +1,14 @@
 <script setup>
   import { RouterLink, useRoute } from 'vue-router'
-  import { ref, watch } from 'vue'
+  import { ref, watch, provide } from 'vue'
 
   const route = useRoute()
   const currentYear = new Date().getFullYear()
 
   const isMenuOpen = ref(false)
+  const isNavVisible = ref(true)
+
+  provide('isNavVisible', isNavVisible)
 
   const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value
@@ -36,7 +39,7 @@
   </div>
 
   <button
-    v-if="route.meta.showNav"
+    v-if="route.meta.showNav && isNavVisible"
     class="burger-btn"
     :class="{ 'is-open': isMenuOpen }"
     @click="toggleMenu"
@@ -48,7 +51,7 @@
 
   <nav
     class="main-nav"
-    v-if="route.meta.showNav"
+    v-if="route.meta.showNav && isNavVisible"
     :class="{ 'is-open': isMenuOpen }"
   >
     <button class="burger-close-btn" @click="closeMenu">&#x2715;</button>
@@ -65,7 +68,7 @@
   </nav>
 
   <div
-    v-if="isMenuOpen"
+    v-if="isMenuOpen && isNavVisible"
     class="burger-overlay"
     @click="closeMenu"
   ></div>
