@@ -292,4 +292,68 @@
             transform: scale(1.1) translateX(2px);
         }
     }
+
+    @media screen and (max-width: 930px) and (orientation: landscape) {
+        .dialogue-container {
+            margin-top: 10px;
+            margin-left: 60px;
+        }
+
+        .dialogue-bubble {
+            width: 440px;
+            min-height: 55px;
+        }
+
+        .dialogue-text {
+            font-size: 13px;
+        }
+
+        .dialogue-buttons {
+            gap: 6px;
+            margin-top: 0px;
+        }
+
+        .btn-dialogue {
+            font-size: 12px;
+            min-width: 110px;
+            padding: 5px 10px;
+        }
+
+        .help-btn {
+            bottom: 24px;
+            right: 24px;
+            
+            .help-icon { 
+                width: 32px;
+                height: 32px;
+            }
+        }
+    }
+
+    @media screen and (min-width: 931px) and (max-width: 1200px) and (orientation: landscape) {
+        .dialogue-container {
+            margin-top: 14px;
+            margin-left: 80px;
+        }
+
+        .dialogue-bubble {
+            width: 520px;
+            padding: 14px 22px;
+        }
+
+        .dialogue-text {
+            font-size: 14.5px;
+        }
+
+        .btn-dialogue {
+            font-size: 14px;
+            min-width: 130px;
+            padding: 6px 14px;
+        }
+
+        .help-btn {
+            bottom: 32px;
+            right: 32px;
+        }
+    }
 </style>

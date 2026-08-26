@@ -53,6 +53,15 @@
         if (stage) stage.container().style.cursor = 'default'
     }
 
+    const onClick = () => {
+        emit('character-interaction')
+    }
+
+    const onTap = () => {
+        jump()
+        emit('character-interaction')
+    }
+
     defineExpose({ jump })
 
     onMounted(() => {
@@ -79,7 +88,8 @@
             width: 120,
             height: 165
         }"
-        @click="emit('character-interaction')"
+        @click="onClick"
+        @tap="onTap"
         @mouseenter="onMouseEnter"
         @mouseleave="onMouseLeave"
     />
