@@ -137,9 +137,11 @@
 
     @media screen and (max-width: 930px) and (orientation: landscape) {
         .rules-container {
-            width: 94vw;
-            height: 90vh;
-            padding: 12% 8% 8% 8%;
+            width: 600px;
+            max-width: 94vw;
+            height: 400px;
+            max-height: 90vh;
+            padding: 90px 20px 15px 45px;
         }
 
         .btn-close {
@@ -174,9 +176,11 @@
 
     @media screen and (min-width: 931px) and (max-width: 1200px) and (orientation: landscape) {
         .rules-container {
-            width: 820px;
-            height: 480px;
-            padding: 10% 3% 3% 5%;
+            width: 800px;
+            max-width: 94vw;
+            height: 400px;
+            max-height: 90vh;
+            padding: 60px 20px 20px 65px;
         }
 
         .btn-close {
