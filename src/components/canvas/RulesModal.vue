@@ -56,7 +56,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 2000;
+        z-index: 9000;
         animation: fadeIn 0.25s ease-out;
     }
 
@@ -67,11 +67,13 @@
         width: 900px;
         max-width: 90vw;
         height: 520px;
-        padding: 96px 80px 50px 100px;
+        max-height: 88vh;
+        padding: 7% 3% 5% 5%;
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
         position: relative;
+        overflow: hidden;
     }
 
     .btn-close {
@@ -97,6 +99,7 @@
         color: $color-secondary;
         margin: 0 0 24px 0;
         text-align: left;
+        flex-shrink: 0;
     }
 
     .rules-content {
@@ -105,6 +108,8 @@
         gap: 16px;
         overflow-y: auto;
         padding-right: 15px;
+        flex: 1;
+        min-height: 0;
     }
 
     .rule-desc {
@@ -128,5 +133,71 @@
     @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
+    }
+
+    @media screen and (max-width: 930px) and (orientation: landscape) {
+        .rules-container {
+            width: 94vw;
+            height: 90vh;
+            padding: 12% 8% 8% 8%;
+        }
+
+        .btn-close {
+            top: 48px;
+            right: 8%;
+            font-size: 32px;
+        }
+
+        .rules-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            padding-right: 30px;
+        }
+
+        .rules-content {
+            gap: 10px;
+            padding-right: 8px;
+        }
+
+        .rule-desc {
+            h3 {
+            font-size: 17px;
+            margin-bottom: 2px;
+            }
+
+            p {
+            font-size: 13px;
+            line-height: 1.35;
+            }
+        }
+    }
+
+    @media screen and (min-width: 931px) and (max-width: 1200px) and (orientation: landscape) {
+        .rules-container {
+            width: 820px;
+            height: 480px;
+            padding: 10% 3% 3% 5%;
+        }
+
+        .btn-close {
+            top: 45px;
+            right: 48px;
+            font-size: 28px;
+        }
+
+        .rules-title {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .rule-desc {
+            h3 {
+            font-size: 20px;
+            }
+
+            p {
+            font-size: 15px;
+            }
+        }
     }
 </style>
