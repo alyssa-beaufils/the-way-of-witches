@@ -90,4 +90,29 @@
     from { opacity: 0; }
     to { opacity: 1; }
   }
+
+  @media screen and (max-width: 930px) and (orientation: landscape) {
+    .btn-close {
+      top: 14px;
+      right: 20px;
+      font-size: 24px;
+    }
+
+    .inspect-card-img {
+      height: 84vh;
+      max-width: 90vw;
+    }
+  }
+
+  @media screen and (min-width: 931px) and (max-width: 1200px) and (orientation: landscape) {
+    .btn-close {
+      top: 24px;
+      right: 32px;
+      font-size: 28px;
+    }
+
+    .inspect-card-img {
+      height: 80vh;
+    }
+  }
 </style>
