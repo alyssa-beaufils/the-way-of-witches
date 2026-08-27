@@ -31,6 +31,7 @@
         <h2>Hold on, fellow mystic!</h2>
         <p>We designed this interactive Tarot board with lots of tiny details, drag-and-drop mechanics, and features that simply don't fit into portrait mode just yet!</p>
         <p>Please <strong>rotate your device</strong> or come back on a computer to start your journey. The cards will be waiting for you!</p>
+        <p>Please note that this experience is optimized for desktop computers.</p>
       </div>
     </div>
     <footer class="credits">
