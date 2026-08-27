@@ -404,6 +404,7 @@
         .feedback-text {
             max-width: 80vw;
             font-size: 14px;
+            margin-top: -5px;
         }
     }
 </style>
