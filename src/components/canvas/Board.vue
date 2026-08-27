@@ -79,7 +79,7 @@
     const fitStageToWindow = () => {
         const width = window.innerWidth
         const height = window.innerHeight
-        const scale = Math.max(width / total_width, height / total_height)
+        const scale = Math.min(width / total_width, height / total_height)
 
         StageConfig.value = {
             width,

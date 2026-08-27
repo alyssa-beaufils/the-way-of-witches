@@ -21,6 +21,10 @@
     }
   };
 
+  const handleTouchMove = (event) => {
+    event.preventDefault();
+  };
+
   const handleTouchEnd = (event) => {
     if (event.changedTouches && event.changedTouches.length > 0) {
       const touchEndY = event.changedTouches[0].clientY;
@@ -37,6 +41,7 @@
   onMounted(() => {
     window.addEventListener('wheel', handleWheel);
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
     window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     setTimeout(() => {
@@ -47,6 +52,7 @@
   onUnmounted(() => {
     window.removeEventListener('wheel', handleWheel);
     window.removeEventListener('touchstart', handleTouchStart);
+    window.removeEventListener('touchmove', handleTouchMove);
     window.removeEventListener('touchend', handleTouchEnd);
   });
 </script>
@@ -111,6 +117,7 @@
     background-color: #16011b98;
     margin: 0;
     padding: 0;
+    touch-action: none;
   }
 
   .hero-content {

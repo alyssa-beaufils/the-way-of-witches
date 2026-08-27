@@ -87,6 +87,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     overflow-y: hidden;
+    touch-action: none;
   }
 
   app-container {
